@@ -1,14 +1,15 @@
 import React from 'react';
+import Navigation from '../Navigation';
 import SideNav from '../Navigation/SideNav';
 
 function Home() {
   return (
-    <SideNav>
+    <Navigation>
       <div className="container">
         hello
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, temporibus?
       </div>
-    </SideNav>
+    </Navigation>
   );
 }
 
