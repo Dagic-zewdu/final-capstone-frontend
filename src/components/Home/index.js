@@ -1,5 +1,5 @@
 import React from 'react';
-import SideNav from '../shared/SideNav';
+import SideNav from '../Navigation/SideNav';
 
 function Home() {
   return (

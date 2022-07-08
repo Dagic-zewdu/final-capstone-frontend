@@ -1,6 +1,6 @@
 .sidebar {
   height: 100%;
-  width: 0;
+  width: 300px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -27,7 +27,7 @@
 .sidebar .logo {
   position: absolute;
   top: 0;
-  left: 25px;
+  left: -10;
   font-size: 36px;
   margin-left: 50px;
 }
@@ -48,4 +48,18 @@
 #main {
   transition: margin-left 0.5s;
   padding: 16px;
+  margin-left: 300px;
+}
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  #main {
+    margin-left: 0;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #header-nav {
+    display: none;
+  }
 }
