@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import 'styles/index.css';
+import './styles/index.css';
 import { Link } from 'react-router-dom';
 
 function SideNav({ children }) {
@@ -10,8 +11,8 @@ function SideNav({ children }) {
         <Link to="/" className="logo">
           <h1 className="font-italic display-2">Logo</h1>
         </Link>
-        <a href="#">About</a>
-        <a href="#">Services</a>
+        <Link to="/motorcycle">Motorcycle</Link>
+        <Link to="/rervations">Services</Link>
         <a href="#">Clients</a>
         <a href="#">Contact</a>
       </div>

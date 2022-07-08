@@ -1,8 +1,14 @@
 import React from 'react';
+import SideNav from '../shared/SideNav';
 
 function Home() {
   return (
-    <div>Home</div>
+    <SideNav>
+      <div className="container">
+        hello
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, temporibus?
+      </div>
+    </SideNav>
   );
 }
 
