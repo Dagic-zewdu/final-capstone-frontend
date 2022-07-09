@@ -1,6 +1,5 @@
 import React from 'react';
 import Navigation from '../Navigation';
-import SideNav from '../Navigation/SideNav';
 
 function Home() {
   return (

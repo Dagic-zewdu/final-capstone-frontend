@@ -1,9 +1,11 @@
+@import url('http://fonts.cdnfonts.com/css/elronet-monospace');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(255, 255, 255) !important;
+  font-family: 'ElroNet Monospace', sans-serif !important;
 }
 
 code {
@@ -11,5 +13,14 @@ code {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
+  color: #545454 !important;
+}
+
+a:hover {
+  color: #111 !important;
+}
+
+a.active {
+  color: rgb(196, 242, 105);
 }
