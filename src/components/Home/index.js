@@ -4,10 +4,7 @@ import Navigation from '../Navigation';
 function Home() {
   return (
     <Navigation>
-      <div className="container">
-        hello
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, temporibus?
-      </div>
+      <div className="container" />
     </Navigation>
   );
 }

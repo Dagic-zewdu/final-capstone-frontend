@@ -1,10 +1,13 @@
 import { BrowserRouter } from 'react-router-dom';
+import { ToastProvider } from 'react-toast-notifications';
 import Router from './pages';
 
 const App = () => (
-  <BrowserRouter>
-    <Router />
-  </BrowserRouter>
+  <ToastProvider>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
+  </ToastProvider>
 
 );
 

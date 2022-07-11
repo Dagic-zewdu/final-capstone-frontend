@@ -1,11 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
-import {
-  faFacebook, faInstagram, faPinterest, faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import GoogleSignIn from '../Signin';
+import SocialLinks from '../social-links';
 
 function SideNav() {
   return (
@@ -21,14 +19,10 @@ function SideNav() {
           <NavLink to="/reservations">My reservations</NavLink>
           <NavLink to="/addmotorcyle">Add Motorcycle</NavLink>
           <NavLink to="/requested">Requested reservations</NavLink>
+          <GoogleSignIn />
         </div>
       </div>
-      <div className="d-flex justify-content-around">
-        <FontAwesomeIcon icon={faFacebook} className="fa-2x mr-3" />
-        <FontAwesomeIcon icon={faTwitter} className="fa-2x mr-3" />
-        <FontAwesomeIcon icon={faInstagram} className="fa-2x mr-3" />
-        <FontAwesomeIcon icon={faPinterest} className="fa-2x mr-3" />
-      </div>
+      <SocialLinks />
     </nav>
 
   );
