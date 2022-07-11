@@ -6,9 +6,11 @@ import { useToasts } from 'react-toast-notifications';
 import { gapi } from 'gapi-script';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from 'react-avatar';
+import { useSelector } from 'react-redux';
 import config from '../../config/config';
 
 function GoogleSignIn() {
+  const { account } = useSelector((state) => state);
   const { addToast } = useToasts();
   const [user, setUser] = useState(null);
   const signInwithGoogle = (user) => {

@@ -2,8 +2,9 @@ import usersActions from '../types/users';
 
 const initialState = {
   loading: true,
-  data: null,
+  currentUser: null,
   error: false,
+  token: null,
 };
 
 const accountReducer = (state = initialState, { type, payload }) => {
@@ -17,7 +18,7 @@ const accountReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        data: payload,
+        currentUser: payload,
         error: false,
       };
     case usersActions.FETCH_USER_ERROR:

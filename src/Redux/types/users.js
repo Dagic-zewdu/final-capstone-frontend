@@ -5,6 +5,7 @@ const usersActions = {
   FETCH_USER_START: 'FETCH_USER_START',
   FETCH_USER_SUCCESS: 'FETCH_USER_SUCCESS',
   FETCH_USER_ERROR: 'FETCH_USER_ERROR',
+  SET_TOKEN: 'SET_TOKEN',
 };
 
 export default usersActions;
