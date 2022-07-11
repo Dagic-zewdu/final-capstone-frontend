@@ -20,8 +20,19 @@ export const setToken = (payload) => ({
 });
 export const fetchCurrentAccount = (token) => async (dispatch) => {
   try {
+    dispatch(fetchAccountStart());
     const res = await httpCommon(token).get('/auto_login');
     dispatch(fetchAccountSuccess(res?.data));
+  } catch (err) {
+    dispatch(fetchAccountError(err?.message));
+  }
+};
+
+export const logInAsync = (user) => async (dispatch) => {
+  try {
+    const res = await httpCommon().post('/login', user);
+    dispatch(fetchAccountSuccess(res?.data.user));
+    dispatch(setToken(res?.data?.token));
   } catch (err) {
     dispatch(fetchAccountError(err?.message));
   }
