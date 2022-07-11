@@ -19,12 +19,13 @@ function SideNav() {
           <NavLink to="/reservations">My reservations</NavLink>
           <NavLink to="/addmotorcyle">Add Motorcycle</NavLink>
           <NavLink to="/requested">Requested reservations</NavLink>
-          <GoogleSignIn />
         </div>
       </div>
-      <SocialLinks />
+      <div className="d-flex flex-column align-items-center justify-content-center">
+        <GoogleSignIn />
+        <SocialLinks />
+      </div>
     </nav>
-
   );
 }
 
