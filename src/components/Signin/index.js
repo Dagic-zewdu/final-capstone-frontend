@@ -1,22 +1,28 @@
 import React, { useEffect } from 'react';
-import GoogleLogin from 'react-google-login';
-import { Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import GoogleLogin, { GoogleLogout } from 'react-google-login';
+import { Button, NavDropdown } from 'react-bootstrap';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useToasts } from 'react-toast-notifications';
-import { gapi } from 'gapi- script';
+import { gapi } from 'gapi-script';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../config/config';
+import { useState } from 'react';
+import Avatar from 'react-avatar';
 
 function GoogleSignIn() {
   const { addToast } = useToasts();
+  const [user, setUser] = useState(null);
   const signInwithGoogle = (user) => {
-    console.log(user);
+    const { name: username, imageUrl: photo, email } = user?.profileObj;
+    setUser({ username, photo, email });
   };
+
   useEffect(() => {
     function start() {
       gapi.client.init({
         clientId: config.GoogleClientId,
         scope: 'email',
+        prompt: 'select_account',
       });
     }
 
@@ -29,20 +35,47 @@ function GoogleSignIn() {
       autoDismiss: true,
     });
   };
-  return (
+  const LogOutSuccess = () => {
+    setUser(null);
+  };
+  console.log(user);
+  return !user ? (
     <GoogleLogin
       clientId={config.GoogleClientId}
       onSuccess={signInwithGoogle}
       onFailure={signInGoogleFailure}
       cookiePolicy="single_host_origin"
+      prompt="select_account"
       render={(renderProps) => (
-        <Button variant="outline-warning" onClick={renderProps.onClick} disabled={renderProps.disabled} isGoogleSignIn>
+        <Button
+          variant="outline-warning"
+          onClick={renderProps.onClick}
+          disabled={renderProps.disabled}
+        >
           <FontAwesomeIcon icon={faGoogle} />
-          {' '}
           Sign in
         </Button>
       )}
     />
+  ) : (
+    <div className="d-flex">
+      <Avatar round size="50" name={user.username} style={{ marginRight: 10 }} src={user.photo} />
+      <NavDropdown title="" id="collasible-nav-dropdown">
+        <GoogleLogout
+          clientId={config.GoogleClientId}
+          onLogoutSuccess={LogOutSuccess}
+          render={(renderProps) => (
+            <NavDropdown.Item
+              href="#action/3.1"
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+            >
+              Logout
+            </NavDropdown.Item>
+          )}
+        />
+      </NavDropdown>
+    </div>
   );
 }
 
