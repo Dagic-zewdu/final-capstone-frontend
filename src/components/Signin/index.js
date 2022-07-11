@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import { Button, NavDropdown } from 'react-bootstrap';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { useToasts } from 'react-toast-notifications';
 import { gapi } from 'gapi-script';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import config from '../../config/config';
-import { useState } from 'react';
 import Avatar from 'react-avatar';
+import config from '../../config/config';
 
 function GoogleSignIn() {
   const { addToast } = useToasts();
@@ -38,7 +37,6 @@ function GoogleSignIn() {
   const LogOutSuccess = () => {
     setUser(null);
   };
-  console.log(user);
   return !user ? (
     <GoogleLogin
       clientId={config.GoogleClientId}
