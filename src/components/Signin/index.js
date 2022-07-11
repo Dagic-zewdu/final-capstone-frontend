@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import { Button, NavDropdown, Spinner } from 'react-bootstrap';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -9,22 +9,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from 'react-avatar';
 import { useDispatch, useSelector } from 'react-redux';
 import config from '../../config/config';
-import { fetchCurrentAccount, logInAsync } from '../../Redux/actions/account';
+import {
+  fetchAccountSuccess, fetchCurrentAccount, logInAsync, setToken,
+} from '../../Redux/actions/account';
+import { showSuccessToast } from '../../shared/toast';
 
 function GoogleSignIn() {
   const { account } = useSelector((state) => state);
   const { currentUser, token, loading } = account;
   const dispatch = useDispatch();
   useEffect(() => {
-    if (token) {
-      dispatch(fetchCurrentAccount(token));
-    }
+    dispatch(fetchCurrentAccount(token));
   }, [token]);
 
   const { addToast } = useToasts();
   const signInwithGoogle = (user) => {
     const { name: username, imageUrl: photo, email } = user?.profileObj;
-    dispatch(logInAsync({ username, photo, email }));
+    dispatch(logInAsync({ username, photo, email }, addToast));
   };
 
   useEffect(() => {
@@ -45,7 +46,9 @@ function GoogleSignIn() {
     });
   };
   const LogOutSuccess = () => {
-    setUser(null);
+    dispatch(fetchAccountSuccess(null));
+    dispatch(setToken(null));
+    showSuccessToast('Logout success see you soon!', addToast);
   };
   return (
     loading
@@ -74,7 +77,13 @@ function GoogleSignIn() {
         />
       ) : (
         <div className="d-flex">
-          <Avatar round size="50" name={user.username} style={{ marginRight: 10 }} src={user.photo} />
+          <Avatar
+            round
+            size="50"
+            name={currentUser?.username}
+            style={{ marginRight: 10 }}
+            src={currentUser?.photo}
+          />
           <NavDropdown title="" id="collasible-nav-dropdown">
             <GoogleLogout
               clientId={config.GoogleClientId}

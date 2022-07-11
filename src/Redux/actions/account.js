@@ -1,4 +1,5 @@
 import httpCommon from '../../api';
+import { showSuccessToast, showErrorToast } from '../../shared/toast';
 import usersActions from '../types/users';
 
 export const fetchAccountStart = () => ({
@@ -33,7 +34,9 @@ export const logInAsync = (user, toast) => async (dispatch) => {
     const res = await httpCommon().post('/login', user);
     dispatch(fetchAccountSuccess(res?.data.user));
     dispatch(setToken(res?.data?.token));
+    showSuccessToast(`welcome ${user?.username}`, toast);
   } catch (err) {
+    showErrorToast(err, toast);
     dispatch(fetchAccountError(err?.message));
   }
 };

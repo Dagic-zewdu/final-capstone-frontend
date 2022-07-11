@@ -3,8 +3,8 @@ import usersActions from '../types/users';
 const initialState = {
   loading: true,
   currentUser: null,
-  error: false,
   token: null,
+  error: false,
 };
 
 const accountReducer = (state = initialState, { type, payload }) => {
