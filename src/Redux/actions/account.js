@@ -28,7 +28,7 @@ export const fetchCurrentAccount = (token) => async (dispatch) => {
   }
 };
 
-export const logInAsync = (user) => async (dispatch) => {
+export const logInAsync = (user, toast) => async (dispatch) => {
   try {
     const res = await httpCommon().post('/login', user);
     dispatch(fetchAccountSuccess(res?.data.user));
