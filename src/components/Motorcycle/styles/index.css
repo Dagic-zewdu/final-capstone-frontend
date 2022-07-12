@@ -7,3 +7,10 @@
   top: 8px;
   right: 16px;
 }
+
+.mr-10 {
+  margin-right: 10px;
+}
+.ml-10 {
+  margin-left: 10px;
+}

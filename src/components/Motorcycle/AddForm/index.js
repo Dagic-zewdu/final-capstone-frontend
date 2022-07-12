@@ -3,7 +3,6 @@ import { faMotorcycle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
-import { useForm } from 'react-hook-form';
 import '../styles/index.css';
 // eslint-disable-next-line import/order
 import { generate } from 'randomized-string';
@@ -22,22 +21,26 @@ function AddMotorCycle() {
     description: '',
     image: '',
   });
-  const {
-    register, handleSubmit, formState: { errors },
-  } = useForm();
-  const onSubmit = (e) => {
+  const handleChange = (e) => {
+    setState((s) => ({
+      ...s,
+      [e.target.id]: e.target.value,
+    }));
   };
   const removeImage = (id) => setState((s) => ({
     ...s,
     images: s.images.filter(({ id: Id }) => id !== Id),
   }));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <Navigation>
       <div className="container">
         <div className="row">
           <div className="col-lg-3">{' '}</div>
           <div className="col-lg-6">
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <div className="d-flex align-items-center flex-column justify-content-center">
                 <h1 className="viral">
                   {' '}
@@ -49,49 +52,50 @@ function AddMotorCycle() {
                   label="Model"
                   className="mb-3 mt-3 w-100"
                 >
-                  <Form.Control type="text" id="model" placeholder="Model" />
+                  <Form.Control type="text" onChange={handleChange} required id="model" placeholder="Model" />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Title"
                   className="mb-3 w-100"
                 >
-                  <Form.Control type="text" id="title" placeholder="Title" />
+                  <Form.Control type="text" onChange={handleChange} required id="title" placeholder="Title" />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Price"
                   className="mb-3 w-100"
                 >
-                  <Form.Control type="number" id="price" placeholder="Price" />
+                  <Form.Control type="number" onChange={handleChange} required id="price" placeholder="Price" />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Duration in years"
                   className="mb-3 w-100"
                 >
-                  <Form.Control type="number" id="duration" placeholder="Duration" />
+                  <Form.Control type="number" onChange={handleChange} required id="duration" placeholder="Duration" />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Discount by percent %"
                   className="mb-3 w-100"
                 >
-                  <Form.Control type="number" id="discount" placeholder="Discount" />
+                  <Form.Control type="number" onChange={handleChange} id="discount" placeholder="Discount" />
                 </FloatingLabel>
                 <FloatingLabel controlId="description" label="Description" className="w-100 mb-3">
                   <Form.Control
                     as="textarea"
                     placeholder="description"
                     id="description"
+                    onChange={handleChange}
                     style={{ height: '200px' }}
                   />
                 </FloatingLabel>
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center w-100">
                   <FloatingLabel
                     controlId="floatingInput"
                     label="Add image url"
-                    className="mb-3 w-75"
+                    className="w-75"
                   >
                     <Form.Control
                       type="text"
@@ -103,36 +107,55 @@ function AddMotorCycle() {
                       id="images"
                       placeholder="Title"
                     />
-                    <Button
-                      variant="outline-warning"
-                      onClick={() => setState((s) => ({
-                        ...s,
-                        images: [...s.images, {
-                          id: generate({ charset: 'number' }),
-                          image: s.image,
-                        }],
-                      }))}
-                    >
-                      + Add image
-                    </Button>
                   </FloatingLabel>
+                  <Button
+                    variant="outline-info"
+                    onClick={() => setState((s) => ({
+                      ...s,
+                      images: [...s.images, {
+                        id: generate({ charset: 'number' }),
+                        image: s.image,
+                      }],
+                    }))}
+                  >
+                    + Add image
+                  </Button>
                 </div>
-                <Carousel responsive={responsive([3, 2, 1])}>
-                  {
+                <div className="row w-100 mt-4">
+                  <Carousel
+                    keyBoardControl
+                    className="w-100"
+                    itemClass="mr-10"
+                    responsive={responsive([3, 2, 1])}
+                  >
+                    {
                     state.images.map(({ image, id }) => (
-                      <div className="img-cont" key={id}>
-                        <img src={image} alt="Snow" className="w-100" />
-                        <Button
-                          variant="outline-warning"
-                          className="top-right fa-2x"
-                          onClick={() => removeImage(id)}
-                        >
-                          &times;
-                        </Button>
+                      <div
+                        className="col-lg-12 w-100"
+                        key={id}
+                        style={{ marginRight: 10 }}
+                      >
+                        <div className="card w-100">
+                          <img
+                            src={image}
+                            alt="Snow"
+                            className="w-100"
+                            style={{ height: '200px', objectFit: 'cover' }}
+                          />
+                          <Button
+                            type="button"
+                            variant="outline-danger"
+                            className="fa-2x"
+                            onClick={() => removeImage(id)}
+                          >
+                            Remove
+                          </Button>
+                        </div>
                       </div>
                     ))
                  }
-                </Carousel>
+                  </Carousel>
+                </div>
               </div>
             </form>
           </div>
