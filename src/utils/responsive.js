@@ -18,4 +18,4 @@ const responsive = ([desktop, tablet, mobile]) => ({
   },
 });
 
-export default { responsive };
+export default responsive;
