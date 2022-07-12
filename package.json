@@ -5,6 +5,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
@@ -12,6 +13,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
     "gapi-script": "^1.2.0",
+    "randomized-string": "^1.2.6",
     "react": "^17.0.2",
     "react-avatar": "^5.0.1",
     "react-bootstrap": "^2.4.0",

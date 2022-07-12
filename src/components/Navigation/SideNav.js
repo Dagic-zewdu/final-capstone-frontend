@@ -17,7 +17,7 @@ function SideNav() {
         <div className="">
           <NavLink to="/motorcycle">Motorcycle</NavLink>
           <NavLink to="/reservations">My reservations</NavLink>
-          <NavLink to="/addmotorcyle">Add Motorcycle</NavLink>
+          <NavLink to="/addmotorcycle">Add Motorcycle</NavLink>
           <NavLink to="/requested">Requested reservations</NavLink>
         </div>
       </div>

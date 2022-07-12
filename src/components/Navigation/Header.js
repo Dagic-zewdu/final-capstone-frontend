@@ -26,7 +26,7 @@ function Header() {
               <NavLink to="/reservations">My reservations</NavLink>
             </Nav.Link>
             <Nav.Link>
-              <NavLink to="/reservations">Add Motorcycle</NavLink>
+              <NavLink to="/addmotorcycle">Add Motorcycle</NavLink>
             </Nav.Link>
             <Nav.Link>
               <NavLink to="/reservations">Requested reservations</NavLink>
