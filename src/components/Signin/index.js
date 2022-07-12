@@ -20,7 +20,7 @@ function GoogleSignIn() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCurrentAccount(token));
-  }, [token]);
+  }, []);
 
   const { addToast } = useToasts();
   const signInwithGoogle = (user) => {
@@ -76,21 +76,27 @@ function GoogleSignIn() {
           )}
         />
       ) : (
-        <div className="d-flex">
-          <Avatar
-            round
-            size="50"
-            name={currentUser?.username}
-            style={{ marginRight: 10 }}
-            src={currentUser?.photo}
-          />
+        <div className="d-flex justify-content-around align-items-center ">
+          <div className="d-flex align-items-center w-100">
+
+            <Avatar
+              round
+              size="50"
+              name={currentUser?.username}
+              style={{ marginRight: 10 }}
+              src={currentUser?.photo}
+            />
+            <div className="d-flex flex-column justify-content-center">
+              <p className="mb-0">{currentUser?.username}</p>
+              <p className="mb-0"><small>{currentUser?.email}</small></p>
+            </div>
+          </div>
           <NavDropdown title="" id="collasible-nav-dropdown">
             <GoogleLogout
               clientId={config.GoogleClientId}
               onLogoutSuccess={LogOutSuccess}
               render={(renderProps) => (
                 <NavDropdown.Item
-                  href="#action/3.1"
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
                 >
