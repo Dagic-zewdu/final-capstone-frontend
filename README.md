@@ -18,7 +18,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Live Demo
 
-[Live Demo Link]()
+[Live Demo Link](https://bcycom.herokuapp.com/)
 
 ### Prerequisites
 
