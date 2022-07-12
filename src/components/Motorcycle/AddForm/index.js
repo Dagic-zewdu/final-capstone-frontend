@@ -1,10 +1,15 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { faMotorcycle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { FloatingLabel, Form } from 'react-bootstrap';
+import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import Navigation from '../../Navigation';
 import '../styles/index.css';
+// eslint-disable-next-line import/order
+import { generate } from 'randomized-string';
+import Carousel from 'react-multi-carousel';
+import Navigation from '../../Navigation';
+import responsive from '../../../utils/responsive';
 
 function AddMotorCycle() {
   const [state, setState] = useState({
@@ -21,9 +26,10 @@ function AddMotorCycle() {
   } = useForm();
   const onSubmit = (e) => {
   };
-  const removeImage = ({ id }) => {
-
-  };
+  const removeImage = (id) => setState((s) => ({
+    ...s,
+    images: s.images.filter(({ id: Id }) => id !== Id),
+  }));
   return (
     <Navigation>
       <div className="container">
@@ -90,20 +96,31 @@ function AddMotorCycle() {
                     onChange={(e) => setState((s) => (
                       {
                         ...s,
-                        images: [...s.images, {id:,image:e.target.value}],
+                        images: [...s.images, {
+                          id: generate({ charset: 'number' }),
+                          image: e.target.value,
+                        }],
                       }))}
                     id="title"
                     placeholder="Title"
                   />
                 </FloatingLabel>
-                {
-                    state.images((image) => (
-                      <div className="img-cont">
+                <Carousel responsive={responsive([3, 2, 1])}>
+                  {
+                    state.images.map(({ image, id }) => (
+                      <div className="img-cont" key={id}>
                         <img src={image} alt="Snow" className="w-100" />
-                        <div className="top-right fa-2x">&times;</div>
+                        <Button
+                          variant="outline-warning"
+                          className="top-right fa-2x"
+                          onClick={() => removeImage(id)}
+                        >
+                          &times;
+                        </Button>
                       </div>
                     ))
-}
+                 }
+                </Carousel>
               </div>
             </form>
           </div>
