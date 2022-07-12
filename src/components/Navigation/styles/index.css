@@ -1,0 +1,71 @@
+@import url('http://fonts.cdnfonts.com/css/virale');
+
+.sidebar {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff !important;
+  border-right: 0.5px solid #dcd9d9;
+  overflow-x: hidden;
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 15px;
+}
+
+.bg-lighter {
+  background-color: #eee !important;
+}
+
+.sidebar a {
+  text-decoration: none;
+  font-size: 20px;
+  color: #545454;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #0d0d0d;
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 16px;
+  margin-left: 300px;
+  background-color: #eee !important;
+  min-height: 100vh;
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  #main {
+    margin-left: 0;
+  }
+
+  .logo {
+    transform: rotate(0deg) !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #header-nav {
+    display: none;
+  }
+}
+
+.logo {
+  font-family: 'Virale', sans-serif;
+  font-size: 52px !important;
+  font-weight: 200;
+  font-style: italic;
+  transform: rotate(-10deg);
+  text-decoration: underline;
+}
