@@ -24,6 +24,7 @@ a:hover {
 a.active {
   color: rgb(196, 242, 105);
 }
+
 small {
   font-size: 11px !important;
 }
