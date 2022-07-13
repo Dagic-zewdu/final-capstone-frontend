@@ -4,13 +4,15 @@ import Spinner from './Spinner';
 
 function LoadingContainer({ type = 'spinner' }) {
   return (
-    <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
-      {
-      type === 'motorcyles'
-        ? <CyclesSkeleton />
-        : <Spinner />
-     }
-    </div>
+
+    type === 'motorcyles'
+      ? <CyclesSkeleton />
+      : (
+        <div className="d-flex align-items-center justify-content-center">
+          <Spinner />
+        </div>
+      )
+
   );
 }
 
