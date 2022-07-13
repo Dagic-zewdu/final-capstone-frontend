@@ -14,6 +14,7 @@ import Navigation from '../../Navigation';
 import responsive from '../../../utils/responsive';
 import { showErrorToast } from '../../../shared/toast';
 import { addMotorcycleAsync } from '../../../Redux/actions/motorcycle';
+import AllContainer from '../../Shared/AllContainer';
 
 function AddMotorCycle() {
   const [state, setState] = useState({
@@ -59,7 +60,7 @@ function AddMotorCycle() {
   };
 
   return (
-    <Navigation>
+    <AllContainer>
       <div className="container">
         <div className="row">
           <div className="col-lg-3">{' '}</div>
@@ -200,7 +201,7 @@ function AddMotorCycle() {
           <div className="col-lg-3">{' '}</div>
         </div>
       </div>
-    </Navigation>
+    </AllContainer>
   );
 }
 
