@@ -60,7 +60,7 @@ function AddMotorCycle() {
   };
 
   return (
-    <AllContainer>
+    <AllContainer auth>
       <div className="container">
         <div className="row">
           <div className="col-lg-3">{' '}</div>
