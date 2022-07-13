@@ -1,14 +1,19 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { faMotorcycle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import '../styles/index.css';
 // eslint-disable-next-line import/order
 import { generate } from 'randomized-string';
 import Carousel from 'react-multi-carousel';
+import { useToasts } from 'react-toast-notifications';
+import { useDispatch, useSelector } from 'react-redux';
 import Navigation from '../../Navigation';
 import responsive from '../../../utils/responsive';
+import { showErrorToast } from '../../../shared/toast';
+import { addMotorcycleAsync } from '../../../Redux/actions/motorcycle';
 
 function AddMotorCycle() {
   const [state, setState] = useState({
@@ -21,6 +26,10 @@ function AddMotorCycle() {
     description: '',
     image: '',
   });
+  const { addToast } = useToasts();
+  const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.account);
+  const ref = useRef(null);
   const handleChange = (e) => {
     setState((s) => ({
       ...s,
@@ -33,7 +42,22 @@ function AddMotorCycle() {
   }));
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (state.images.length) {
+      let user = {};
+      Object.keys(state).forEach((key) => {
+        if (key === 'images') { user = { ...user, image: state.images.map(({ image }) => (image)) }; } else if (key !== 'image') { user = { ...user, [key]: state[key] }; }
+      });
+      let User = {};
+      Object.keys(user).forEach((key) => {
+        if (key !== 'images') { User = { ...User, [key]: user[key] }; }
+      });
+      dispatch(addMotorcycleAsync(user, token, addToast));
+    } else {
+      showErrorToast('Please add at least one image link', addToast);
+      ref.current.focus();
+    }
   };
+
   return (
     <Navigation>
       <div className="container">
@@ -98,25 +122,32 @@ function AddMotorCycle() {
                     className="w-75"
                   >
                     <Form.Control
+                      ref={ref}
                       type="text"
-                      onChange={(e) => setState((s) => (
+                      onChange={(e) => (setState((s) => (
                         {
                           ...s,
                           image: e.target.value,
-                        }))}
+                        })))}
                       id="images"
-                      placeholder="Title"
+                      value={state.image}
+                      placeholder="image"
                     />
                   </FloatingLabel>
                   <Button
                     variant="outline-info"
-                    onClick={() => setState((s) => ({
-                      ...s,
-                      images: [...s.images, {
-                        id: generate({ charset: 'number' }),
-                        image: s.image,
-                      }],
-                    }))}
+                    onClick={() => (state.image
+                      ? !(state.images.find(({ image }) => image === state.image))
+                        ? setState((s) => ({
+                          ...s,
+                          images: [...s.images, {
+                            id: generate({ charset: 'number' }),
+                            image: s.image,
+                          }],
+                          image: '',
+                        }))
+                        : showErrorToast('Please add another image link', addToast)
+                      : showErrorToast('Please add image link', addToast))}
                   >
                     + Add image
                   </Button>
@@ -156,6 +187,13 @@ function AddMotorCycle() {
                  }
                   </Carousel>
                 </div>
+                <Button
+                  variant="outline-success"
+                  type="submit"
+                  className="w-100 mt-4"
+                >
+                  + Add Motorcycle
+                </Button>
               </div>
             </form>
           </div>
