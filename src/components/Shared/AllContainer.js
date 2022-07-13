@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { useSelector } from 'react-redux';
 import AuthorizeUser from '../Auth';
 import Navigation from '../Navigation';
 import ErrorContainer from './ErrorContainer';
