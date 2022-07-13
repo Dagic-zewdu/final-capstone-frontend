@@ -5,7 +5,7 @@ import Spinner from './Spinner';
 function LoadingContainer({ type = 'spinner' }) {
   return (
 
-    type === 'motorcyles'
+    type === 'motorcycles'
       ? <CyclesSkeleton />
       : (
         <div className="d-flex align-items-center justify-content-center">

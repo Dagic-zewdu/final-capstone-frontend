@@ -10,7 +10,6 @@ import { generate } from 'randomized-string';
 import Carousel from 'react-multi-carousel';
 import { useToasts } from 'react-toast-notifications';
 import { useDispatch, useSelector } from 'react-redux';
-import Navigation from '../../Navigation';
 import responsive from '../../../utils/responsive';
 import { showErrorToast } from '../../../shared/toast';
 import { addMotorcycleAsync } from '../../../Redux/actions/motorcycle';
@@ -23,9 +22,11 @@ function AddMotorCycle() {
     title: '', // required
     images: [], // required at leat one image
     duration: '', // required
-    discount: '', // optional
+    discount: 0, // optional
     description: '',
     image: '',
+    cylinder: '',
+    acceleration: '',
   });
   const { addToast } = useToasts();
   const dispatch = useDispatch();
@@ -78,6 +79,20 @@ function AddMotorCycle() {
                   className="mb-3 mt-3 w-100"
                 >
                   <Form.Control type="text" onChange={handleChange} required id="model" placeholder="Model" />
+                </FloatingLabel>
+                <FloatingLabel
+                  controlId="floatingInput"
+                  label="Cylinder"
+                  className="mb-3 mt-3 w-100"
+                >
+                  <Form.Control type="number" onChange={handleChange} required id="cylinder" placeholder="Model" />
+                </FloatingLabel>
+                <FloatingLabel
+                  controlId="floatingInput"
+                  label="Acceleration"
+                  className="mb-3 mt-3 w-100"
+                >
+                  <Form.Control type="number" onChange={handleChange} required id="acceleration" placeholder="Model" />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"

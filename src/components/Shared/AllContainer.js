@@ -19,7 +19,7 @@ function AllContainer({
         loading
           ? <LoadingContainer type={loadingType} />
           : error
-            ? <ErrorContainer />
+            ? <ErrorContainer error={error} />
             : children
       }
       </AuthorizeUser>
@@ -28,7 +28,7 @@ function AllContainer({
     : loading
       ? <LoadingContainer type={loadingType} />
       : error
-        ? <ErrorContainer />
+        ? <ErrorContainer error={error} />
         : children
 
     }

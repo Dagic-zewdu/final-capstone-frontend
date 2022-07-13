@@ -24,7 +24,7 @@ const motorcycleReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        error: false,
+        error: payload,
       };
     default: return state;
   }
