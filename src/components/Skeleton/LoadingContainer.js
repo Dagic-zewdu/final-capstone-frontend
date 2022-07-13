@@ -1,13 +1,11 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
 
-function LoadingContainer({
-  auth = false, loading = false, error = false, children,type="spinner"
-}) {
-    const {currentUser,loading:userLoading,error}=useSelector(state=>state.account)
+function LoadingContainer({ type = 'spinner' }) {
   return (
-    auth?
+    <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
+      <Spinner />
+    </div>
   );
 }
 
