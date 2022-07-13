@@ -30,6 +30,7 @@ main {
 .pl__ring {
   stroke: hsla(var(--hue), 10%, 10%, 0.1);
   transition: stroke 0.3s;
+  background-color: #eee;
 }
 
 .pl__worm {
