@@ -7,13 +7,12 @@ import MotorCycleCard from './card';
 
 function Motorcycles() {
   const { data, loading, error } = useSelector((state) => state.motorcycles);
-  const { currentUser } = useSelector((state) => state.account);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMotorCycleAsync());
   }, []);
   return (
-    <AllContainer loadingType="motorcycles" loading={loading} error={error}>
+    <AllContainer data={data} loadingType="motorcycles" loading={loading} error={error}>
       <div className="container d-flex align-items-center justify-content-center w-100" style={{ minHeight: '100vh' }}>
         <div className="row w-100 g-0">
           {
