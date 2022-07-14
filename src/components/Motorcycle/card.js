@@ -4,9 +4,8 @@ import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import responsive from '../../utils/responsive';
-import UserTemplate from '../Shared/UserTemplate';
 
-function MotorCycleCard({ key, cycle, currentUser }) {
+function MotorCycleCard({ key, cycle }) {
   const [body, showBody] = useState(false);
 
   return (
@@ -26,22 +25,15 @@ function MotorCycleCard({ key, cycle, currentUser }) {
             className="w-100"
             responsive={responsive([1, 1, 1])}
           >
-            <Card.Img
-              src="https://st.depositphotos.com/1068095/5153/i/600/depositphotos_51533337-stock-photo-motorbike-racing.jpg"
-              style={{ height: '350px', objectFit: 'cover' }}
-            />
-            <Card.Img
-              src="https://st.depositphotos.com/1068095/5153/i/600/depositphotos_51533337-stock-photo-motorbike-racing.jpg"
-              style={{ height: '350px', objectFit: 'cover' }}
-            />
-            <Card.Img
-              src="https://st.depositphotos.com/1068095/5153/i/600/depositphotos_51533337-stock-photo-motorbike-racing.jpg"
-              style={{ height: '350px', objectFit: 'cover' }}
-            />
-            <Card.Img
-              src="https://st.depositphotos.com/1068095/5153/i/600/depositphotos_51533337-stock-photo-motorbike-racing.jpg"
-              style={{ height: '350px', objectFit: 'cover' }}
-            />
+            {
+            cycle?.images.map((image) => (
+              <Card.Img
+                key={image}
+                src={image}
+                style={{ height: '350px', objectFit: 'cover' }}
+              />
+            ))
+          }
           </Carousel>
           <Card.Body
             className="p-0 w-100"
@@ -55,16 +47,25 @@ function MotorCycleCard({ key, cycle, currentUser }) {
               transition: '1s ease',
             }}
           >
-            <h3 className="text-center mb-0">Vespas</h3>
-            <p className="text-center mb-0">model</p>
+            <h3 className="text-center mb-0">{cycle?.title}</h3>
+            <p className="text-center mb-0">{cycle?.model}</p>
             <div
               className="d-flex justify-content-between align-items-center w-100 py-1 px-1"
             >
               <div className="d-flex flex-column justify-content-center">
-                <p>Can last up to 8 years</p>
+                <p className="mb-0">
+                  {cycle?.cylinder}
+                  {' '}
+                  cylinders
+                </p>
+                <p>{cycle?.acceleration}</p>
               </div>
               <div className="d-flex align-items-center justify-content-center">
-                <p className="bolder">$ 1200</p>
+                <p className="bolder">
+                  $
+                  {' '}
+                  {cycle?.price}
+                </p>
               </div>
             </div>
           </Card.Body>

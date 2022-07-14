@@ -45,15 +45,13 @@ function AddMotorCycle() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state.images.length) {
-      let user = {};
+      let cycle = {};
       Object.keys(state).forEach((key) => {
-        if (key === 'images') { user = { ...user, image: state.images.map(({ image }) => (image)) }; } else if (key !== 'image') { user = { ...user, [key]: state[key] }; }
+        if (key === 'images') {
+          cycle = { ...cycle, images: state.images.map(({ image }) => (image)) };
+        } else if (key !== 'image') { cycle = { ...cycle, [key]: state[key] }; }
       });
-      let User = {};
-      Object.keys(user).forEach((key) => {
-        if (key !== 'images') { User = { ...User, [key]: user[key] }; }
-      });
-      dispatch(addMotorcycleAsync(user, token, addToast));
+      dispatch(addMotorcycleAsync(cycle, token, addToast));
     } else {
       showErrorToast('Please add at least one image link', addToast);
       ref.current.focus();
@@ -92,7 +90,7 @@ function AddMotorCycle() {
                   label="Acceleration"
                   className="mb-3 mt-3 w-100"
                 >
-                  <Form.Control type="number" onChange={handleChange} required id="acceleration" placeholder="Model" />
+                  <Form.Control type="text" onChange={handleChange} required id="acceleration" placeholder="Model" />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"

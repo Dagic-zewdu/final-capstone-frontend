@@ -13,14 +13,14 @@ function Motorcycles() {
     dispatch(fetchMotorCycleAsync());
   }, []);
   return (
-    <AllContainer loadingType="motorcycles" loading={false} error={false}>
+    <AllContainer loadingType="motorcycles" loading={loading} error={error}>
       <div className="container d-flex align-items-center justify-content-center w-100" style={{ minHeight: '100vh' }}>
         <div className="row w-100 g-0">
           {
-     [1, 2, 3, 4, 5, 6, 7, 8, 9].map((key) => (
-       <MotorCycleCard key={key} currentUser={currentUser} />
-     ))
-      }
+            data.map((cycle) => (
+              <MotorCycleCard key={cycle?.id} cycle={cycle} />
+            ))
+          }
         </div>
       </div>
     </AllContainer>

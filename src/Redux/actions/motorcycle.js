@@ -1,5 +1,5 @@
 import httpCommon from '../../api';
-import { showSuccessToast } from '../../shared/toast';
+import { showErrorToast, showSuccessToast } from '../../shared/toast';
 import motorActionTypes from '../types/motorcyles';
 
 export const fetchMotorcyclesStart = () => ({
@@ -32,6 +32,7 @@ export const addMotorcycleAsync = (user, token, toast) => async (dispatch) => {
     showSuccessToast('Bicycle added successfully', toast);
     dispatch(fetchMotorCycleAsync());
   } catch (err) {
-    dispatch(fetchMotorcyclesError(err?.message));
+    console.log(err);
+    showErrorToast(err, toast);
   }
 };
