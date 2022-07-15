@@ -19,7 +19,7 @@ function NotFound404() {
                   Look like you're lost
                 </h3>
 
-                <p>the page you are looking for not avaible!</p>
+                <p>the page you are looking for not available!</p>
 
                 <Link to="/" className="link_404">Go to Home</Link>
               </div>

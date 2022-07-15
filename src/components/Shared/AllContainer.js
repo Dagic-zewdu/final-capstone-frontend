@@ -9,11 +9,13 @@ import ErrorContainer from './ErrorContainer';
 import LoadingContainer from './LoadingContainer';
 
 function AllContainer({
-  auth = false, loading = false, error = false, children, loadingType, data = [],
+  navigation = true, auth = false, loading = false, error = false, children, loadingType, data = [],
 }) {
   return (
-    <Navigation>
-      {
+    navigation
+      ? (
+        <Navigation>
+          {
   auth
     ? (
       <AuthorizeUser loadingType={loadingType}>
@@ -45,7 +47,39 @@ function AllContainer({
         )
 
     }
-    </Navigation>
+        </Navigation>
+      )
+
+      : auth
+        ? (
+          <AuthorizeUser loadingType={loadingType}>
+            {
+        loading
+          ? <LoadingContainer type={loadingType} />
+          : error
+            ? <ErrorContainer error={error} />
+            : data.length ? children
+              : (
+                <div className="d-flex flex-column align-items-center justify-content-center">
+                  <FontAwesomeIcon icon={faMotorcycle} className="fa-3x" />
+                  <h1 className="mt-4">No data yet</h1>
+                </div>
+              )
+      }
+          </AuthorizeUser>
+        )
+
+        : loading
+          ? <LoadingContainer type={loadingType} />
+          : error
+            ? <ErrorContainer error={error} />
+            : data.length ? children : (
+              <div className="d-flex flex-column align-items-center justify-content-center">
+                <FontAwesomeIcon icon={faMotorcycle} className="fa-3x" />
+                <h1 className="mt-4">No data yet</h1>
+              </div>
+            )
+
   );
 }
 

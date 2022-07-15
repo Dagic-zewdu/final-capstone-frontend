@@ -19,7 +19,6 @@ function MotorCycleCard({ key, cycle }) {
       <div className="card rounded w-100" style={{ height: '100%' }}>
         <Card style={{ width: '100%', height: '100%', position: 'relative' }}>
           <Carousel
-            autoPlay
             showDots
             keyBoardControl
             className="w-100"

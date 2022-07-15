@@ -16,7 +16,7 @@ export const fetchMotorcyclesError = (payload) => ({
   payload,
 });
 
-export const fetchMotorCycleAsync = () => async (dispatch) => {
+export const fetchMotorCyclesAsync = () => async (dispatch) => {
   try {
     dispatch(fetchMotorcyclesStart());
     const res = await httpCommon().get('/motorcycles');
@@ -30,9 +30,35 @@ export const addMotorcycleAsync = (user, token, toast) => async (dispatch) => {
   try {
     await httpCommon(token).post('/motorcycle', user);
     showSuccessToast('Bicycle added successfully', toast);
-    dispatch(fetchMotorCycleAsync());
+    dispatch(fetchMotorCyclesAsync());
   } catch (err) {
     console.log(err);
     showErrorToast(err, toast);
+  }
+};
+
+/* individual motorcycle */
+
+export const fetchMotorcycleStart = () => ({
+  type: motorActionTypes.FETCH_MOTORCYCLE_START,
+});
+
+export const fetchMotorcycleSuccess = (payload) => ({
+  type: motorActionTypes.FETCH_MOTORCYCLE_SUCCESS,
+  payload,
+});
+
+export const fetchMotorcycleError = (payload) => ({
+  type: motorActionTypes.FETCH_MOTORCYCLE_ERROR,
+  payload,
+});
+
+export const fetchMotorCycleAsync = (id) => async (dispatch) => {
+  try {
+    dispatch(fetchMotorcycleStart());
+    const res = await httpCommon().get(`/motorcycle/${id}`);
+    dispatch(fetchMotorcycleSuccess(res?.data));
+  } catch (err) {
+    dispatch(fetchMotorcycleError(err?.message));
   }
 };
