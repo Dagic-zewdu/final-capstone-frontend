@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import httpCommon from '../../api';
 import { showErrorToast, showSuccessToast } from '../../shared/toast';
 import motorActionTypes from '../types/motorcyles';

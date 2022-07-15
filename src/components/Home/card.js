@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { generate } from 'randomized-string';
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import getRandomNumberBetween from '../../utils/utils';

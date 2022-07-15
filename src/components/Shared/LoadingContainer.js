@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import CyclesSkeleton from '../Skeleton/CyclesSkeleton';
 import Spinner from './Spinner';

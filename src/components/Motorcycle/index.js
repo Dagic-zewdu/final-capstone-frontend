@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { fetchMotorCyclesAsync } from '../../Redux/actions/motorcycle';
 import AllContainer from '../Shared/AllContainer';
 import MotorCycleCard from './card';
