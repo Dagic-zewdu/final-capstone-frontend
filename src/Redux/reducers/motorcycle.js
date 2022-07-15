@@ -47,7 +47,7 @@ const motorcycleReducer = (state = initialState, { type, payload }) => {
         motorcycle: {
           ...state.motorcycle,
           loading: false,
-          data: payload?.motorcycle,
+          data: payload?.motrcycle,
           createdBy: payload?.created_by,
           error: false,
         },

@@ -36,3 +36,6 @@ small {
 .bolder {
   font-weight: 300 !important;
 }
+.wrap {
+  white-space: pre-wrap !important;
+}

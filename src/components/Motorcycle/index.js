@@ -18,9 +18,7 @@ function Motorcycles() {
         <div className="row w-100 g-0">
           {
             data.map((cycle) => (
-              <Link to={`/motorcycle/${cycle?.id}`} key={cycle?.id}>
-                <MotorCycleCard cycle={cycle} />
-              </Link>
+              <MotorCycleCard cycle={cycle} key={cycle?.id} />
             ))
           }
         </div>

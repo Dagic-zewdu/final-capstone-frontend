@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchMotorCyclesAsync } from '../../Redux/actions/motorcycle';
 import responsive from '../../utils/responsive';
 import AllContainer from '../Shared/AllContainer';
@@ -27,7 +28,9 @@ function Home() {
         >
           {
           data.reverse().map((cycle) => (
-            <HomeCard cycle={cycle} key={cycle?.id} />
+            <Link to={`/motorcycle/${cycle?.id}`} key={cycle?.id}>
+              <HomeCard cycle={cycle} />
+            </Link>
           ))
       }
         </Carousel>

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Card } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
+import { Link } from 'react-router-dom';
 import responsive from '../../utils/responsive';
 
 function MotorCycleCard({ key, cycle }) {
@@ -34,41 +35,42 @@ function MotorCycleCard({ key, cycle }) {
             ))
           }
           </Carousel>
-          <Card.Body
-            className="p-0 w-100"
-            style={{
-              position: 'absolute',
-              backgroundColor: '#111',
-              color: '#fff',
-              bottom: 0,
-              opacity: 0.75,
-              display: body ? 'block' : 'none',
-              transition: '1s ease',
-            }}
-          >
-            <h3 className="text-center mb-0">{cycle?.title}</h3>
-            <p className="text-center mb-0">{cycle?.model}</p>
-            <div
-              className="d-flex justify-content-between align-items-center w-100 py-1 px-1"
+          <Link to={`/motorcycle/${cycle?.id}`} key={cycle?.id}>
+            <Card.Body
+              className="p-0 w-100"
+              style={{
+                position: 'absolute',
+                backgroundColor: '#111',
+                color: '#fff',
+                bottom: 0,
+                opacity: 0.75,
+                display: body ? 'block' : 'none',
+                transition: '1s ease',
+              }}
             >
-              <div className="d-flex flex-column justify-content-center">
-                <p className="mb-0">
-                  {cycle?.cylinder}
-                  {' '}
-                  cylinders
-                </p>
-                <p>{cycle?.acceleration}</p>
+              <h3 className="text-center mb-0">{cycle?.title}</h3>
+              <p className="text-center mb-0">{cycle?.model}</p>
+              <div
+                className="d-flex justify-content-between align-items-center w-100 py-1 px-1"
+              >
+                <div className="d-flex flex-column justify-content-center">
+                  <p className="mb-0">
+                    {cycle?.cylinder}
+                    {' '}
+                    cylinders
+                  </p>
+                  <p>{cycle?.acceleration}</p>
+                </div>
+                <div className="d-flex align-items-center justify-content-center">
+                  <p className="bolder">
+                    $
+                    {' '}
+                    {cycle?.price}
+                  </p>
+                </div>
               </div>
-              <div className="d-flex align-items-center justify-content-center">
-                <p className="bolder">
-                  $
-                  {' '}
-                  {cycle?.price}
-                </p>
-              </div>
-            </div>
-          </Card.Body>
-
+            </Card.Body>
+          </Link>
         </Card>
       </div>
     </div>
