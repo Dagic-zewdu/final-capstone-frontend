@@ -26,6 +26,8 @@ const accountReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: payload,
         loading: false,
+        token: null,
+        currentUser: null,
       };
     case usersActions.SET_TOKEN:
       return {

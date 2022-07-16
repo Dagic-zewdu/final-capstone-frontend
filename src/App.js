@@ -4,6 +4,7 @@ import { ToastProvider } from 'react-toast-notifications';
 import { PersistGate } from 'redux-persist/integration/react';
 import Router from './pages';
 import { store, persistor } from './Redux/configReducer';
+import 'react-multi-carousel/lib/styles.css';
 
 const App = () => (
   <Provider store={store}>

@@ -26,5 +26,18 @@ a.active {
 }
 
 small {
-  font-size: 11px !important;
+  font-size: 10px !important;
+}
+
+.viral {
+  font-family: 'Virale', sans-serif !important;
+  font-style: italic !important;
+}
+
+.bolder {
+  font-weight: 300 !important;
+}
+
+.wrap {
+  white-space: pre-wrap !important;
 }
