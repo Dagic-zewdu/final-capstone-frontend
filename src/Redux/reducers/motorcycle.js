@@ -8,6 +8,7 @@ const initialState = {
     loading: true,
     data: null,
     createdBy: null,
+    reservations: 0,
     error: false,
   },
 };
@@ -49,6 +50,7 @@ const motorcycleReducer = (state = initialState, { type, payload }) => {
           loading: false,
           data: payload?.motrcycle,
           createdBy: payload?.created_by,
+          reservations: payload?.reservations,
           error: false,
         },
       };

@@ -11,7 +11,7 @@ import UserTemplate from '../../Shared/UserTemplate';
 function MotorCycleDetails() {
   const { id } = useParams();
   const {
-    data, loading, error, createdBy,
+    data, loading, error, createdBy, reservations,
   } = useSelector((state) => state.motorcycles?.motorcycle);
 
   const dispatch = useDispatch();
@@ -66,6 +66,16 @@ function MotorCycleDetails() {
                   </tr>
                 </thead>
               </Table>
+              {
+                reservations
+                  ? (
+                    <h2>
+                      {reservations}
+                      {' '}
+                      Reservations
+                    </h2>
+                  ) : ''
+              }
               <Button variant="outline-warning">
                 <h4>+ Reserve</h4>
 
