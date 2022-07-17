@@ -28,11 +28,40 @@ const reservationReducer = (state = initialState, { type, payload }) => {
         data: payload,
         error: false,
       };
-    case ReservationActionType.FETCH_RESERVATION_ERROR:
+    case ReservationActionType.FETCH_RESERVATIONS_ERROR:
       return {
         ...state,
         loading: false,
         error: payload,
+      };
+    case ReservationActionType.FETCH_RESERVATION_START:
+      return {
+        ...state,
+        reservation: {
+          ...state.reservation,
+          loading: true,
+        },
+      };
+    case ReservationActionType.FETCH_RESERVATION_SUCCESS:
+      return {
+        ...state,
+        reservation: {
+          ...state.reservation,
+          loading: false,
+          reservation: payload?.reservation,
+          createdBy: payload?.created_by,
+          motorcycle: payload?.motorcycle,
+          error: false,
+        },
+      };
+    case ReservationActionType.FETCH_RESERVATION_ERROR:
+      return {
+        ...state,
+        reservation: {
+          ...state.reservation,
+          loading: false,
+          error: payload,
+        },
       };
     default: return state;
   }
