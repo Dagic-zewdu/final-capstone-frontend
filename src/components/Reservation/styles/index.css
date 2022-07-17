@@ -8,6 +8,7 @@
   background-color: rgb(141, 203, 55);
   overflow-y: hidden;
   transition: 0.5s;
+  opacity: 0.9;
 }
 
 .overlay-content {
@@ -18,22 +19,13 @@
   justify-content: center;
 }
 
-.overlay h1,h2,h3,h4,p {
-  padding: 8px;
-  text-decoration: none;
-  font-size: 36px;
-  color: #626262;
-  display: block;
-  transition: 0.3s;
-}
+
 
 .overlay a:hover, .overlay a:focus {
   color: #f1f1f1;
 }
 
 .overlay .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px;
+  display: flex;
+  justify-content: end;
 }

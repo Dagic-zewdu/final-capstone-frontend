@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import './styles/index.css';
 
@@ -13,18 +13,32 @@ function AddReservation({ show, showReservation, cycle }) {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+  useEffect(() => {
+    if (show) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [show]);
   return (
     <div id="myNav" className="overlay" style={{ height: show ? '100%' : '0%' }}>
-      <Button className="closebtn" onClick={() => showReservation(false)}>&times;</Button>
+      <Button
+        className="closebtn mt-4"
+        variant="outline-dark"
+        onClick={() => showReservation(false)}
+      >
+        &times;
+        close
+      </Button>
       <div className="overlay-content">
         <h1>{cycle.title}</h1>
         <h4 className="mt-3">{cycle.description}</h4>
         <form onSubmit={handleSubmit}>
-          <div className="d-flex align-items-center justify-content-around">
+          <div className="d-flex align-items-center mb-3 mt-3 justify-content-around w-100">
             <FloatingLabel
               controlId="floatingInput"
-              label="Please drop your  phone"
-              className="w-75"
+              label="Drop your phone"
+              className="w-75 mr-10"
             >
               <Form.Control type="text" value={state.phone} onChange={handleChange} id="phone" placeholder="Phone" />
             </FloatingLabel>
@@ -32,7 +46,7 @@ function AddReservation({ show, showReservation, cycle }) {
               variant="outline-success"
               type="submit"
             >
-              Submit
+              Reserve
             </Button>
           </div>
 

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { fetchMotorCycleAsync } from '../../../Redux/actions/motorcycle';
 import responsive from '../../../utils/responsive';
+import AddReservation from '../../Reservation/AddReservation';
 import AllContainer from '../../Shared/AllContainer';
 import UserTemplate from '../../Shared/UserTemplate';
 
@@ -15,7 +16,7 @@ function MotorCycleDetails() {
   } = useSelector((state) => state.motorcycles?.motorcycle);
 
   const dispatch = useDispatch();
-
+  const [show, showReservation] = useState(false);
   useEffect(() => {
     if (data?.id !== id) {
       dispatch(fetchMotorCycleAsync(id));
@@ -76,7 +77,7 @@ function MotorCycleDetails() {
                     </h2>
                   ) : ''
               }
-              <Button variant="outline-warning">
+              <Button variant="outline-warning" onClick={() => showReservation(true)}>
                 <h4>+ Reserve</h4>
 
               </Button>
@@ -107,6 +108,7 @@ function MotorCycleDetails() {
             <h4 className="mt-3 logo">{data?.title}</h4>
             <div className="mt-2 wrap">{data?.description}</div>
           </div>
+          <AddReservation cycle={data} show={show} showReservation={showReservation} />
         </div>
       </div>
     </AllContainer>
