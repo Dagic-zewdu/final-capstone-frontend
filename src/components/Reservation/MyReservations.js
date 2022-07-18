@@ -9,6 +9,7 @@ import { fetchMotorCyclesAsync } from '../../Redux/actions/motorcycle';
 import { cancelReservation, fetchReservationsAsync } from '../../Redux/actions/reservation';
 import responsive from '../../utils/responsive';
 import AllContainer from '../Shared/AllContainer';
+import AddReservation from './AddReservation';
 
 function MyReservations() {
   const { currentUser, loading: userLoading, token } = useSelector((state) => state.account);
@@ -18,6 +19,11 @@ function MyReservations() {
     loading: motorCycleLoading,
   } = useSelector((state) => state.motorcycles);
   const [myReservations, setReservations] = useState([]);
+  const [EditReservation, setEditReservationData] = useState({
+    cycle: null,
+    reservation: null,
+  });
+  const [edit, showEdit] = useState(false);
   const dispatch = useDispatch();
 
   /** fetch data if data is empty */
@@ -36,6 +42,10 @@ function MyReservations() {
   const selectMotorcycle = (id) => motorcycles.find((motorcycle) => motorcycle?.id === id);
   const CancelReservation = (id) => {
     dispatch(cancelReservation(id, token, addToast));
+  };
+  const editReservation = (reservation, cycle) => {
+    setEditReservationData({ reservation, cycle });
+    showEdit(true);
   };
   return (
     <AllContainer
@@ -102,7 +112,11 @@ function MyReservations() {
 
                 </td>
                 <td className="align-middle" style={{ textAlign: 'right' }}>
-                  <Button variant="outline-danger" className="mb-3" onClick={() => CancelReservation(reserve?.id)}>
+                  <Button
+                    variant="outline-danger"
+                    className="mb-3"
+                    onClick={() => editReservation(reserve, selectMotorcycle(reserve?.id))}
+                  >
                     <FontAwesomeIcon ico={faPencil} className="mr-10" />
                     Edit
                   </Button>
@@ -117,6 +131,13 @@ function MyReservations() {
           </tbody>
         </Table>
       </div>
+      <AddReservation
+        edit
+        reservation={EditReservation.reservation}
+        cycle={EditReservation.reservation}
+        show={edit}
+        showReservation={showEdit}
+      />
     </AllContainer>
   );
 }
