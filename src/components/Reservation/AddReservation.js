@@ -13,8 +13,9 @@ function AddReservation({
     phone: '',
   });
   useEffect(() => {
-    if (edit) setState((s) => ({ ...s, phone: reservation?.phone }));
-  }, [edit]);
+    if (edit) setState((s) => ({ ...s, phone: reservation?.phone ? reservation?.phone : '' }));
+  }, [edit, reservation?.phone]);
+  console.log(state.phone);
   const dispatch = useDispatch();
   const { addToast } = useToasts();
   const { token } = useSelector((state) => state.account);
@@ -26,10 +27,12 @@ function AddReservation({
     if (!edit) {
       dispatch(addReservation({
         motorcycle_id: cycle?.id,
+        phone: state.phone,
       }, token, addToast, showReservation));
     } else {
       dispatch(editReservation(reservation?.id, {
         motorcycle_id: cycle?.id,
+        phone: state.phone,
       }, token, addToast, showReservation));
     }
   };
@@ -51,8 +54,8 @@ function AddReservation({
         close
       </Button>
       <div className="overlay-content">
-        <h1>{cycle.title}</h1>
-        <h4 className="mt-3">{cycle.description}</h4>
+        <h5>{cycle?.title}</h5>
+        <h4 className="mt-3">{cycle?.description}</h4>
         <form onSubmit={handleSubmit}>
           <div className="d-flex align-items-center mb-3 mt-3 justify-content-around w-100">
             <FloatingLabel
@@ -60,11 +63,12 @@ function AddReservation({
               label="Drop your phone"
               className="w-75 mr-10"
             >
-              <Form.Control type="text" value={state.phone} onChange={handleChange} id="phone" placeholder="Phone" />
+              <Form.Control type="text" value={state.phone} required={edit} onChange={handleChange} id="phone" placeholder="Phone" />
             </FloatingLabel>
             <Button
               variant="outline-success"
               type="submit"
+              className="w-25"
             >
               {!edit ? 'Reserve' : 'Update'}
             </Button>

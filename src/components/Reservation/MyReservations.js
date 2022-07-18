@@ -35,7 +35,7 @@ function MyReservations() {
   useEffect(() => {
     if (!userLoading) {
       const myReservations = data.filter((reservation) => reservation?.user_id === currentUser?.id);
-      setReservations(myReservations);
+      setReservations(myReservations.reverse());
     }
   }, [data, currentUser]);
   const { addToast } = useToasts();
@@ -65,7 +65,8 @@ function MyReservations() {
               <th>Price</th>
               <th>Images</th>
               <th>Reserved at</th>
-              <th style={{ textAlign: 'right' }}>Cancel</th>
+              <th>Contact Phone</th>
+              <th style={{ textAlign: 'right' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -111,14 +112,18 @@ function MyReservations() {
                 }
 
                 </td>
+                <td className="align-middle">
+                  {reserve.phone ? reserve.phone : 'No phone dropped please drop your phone'}
+                </td>
                 <td className="align-middle" style={{ textAlign: 'right' }}>
                   <Button
                     variant="outline-danger"
                     className="mb-3"
-                    onClick={() => editReservation(reserve, selectMotorcycle(reserve?.id))}
+                    onClick={() => editReservation(reserve,
+                      selectMotorcycle(reserve?.motorcycle_id))}
                   >
                     <FontAwesomeIcon ico={faPencil} className="mr-10" />
-                    Edit
+                    {reserve.phone ? 'Update phone number' : 'Drop phone number'}
                   </Button>
                   <Button variant="outline-danger" onClick={() => CancelReservation(reserve?.id)}>
                     <FontAwesomeIcon ico={faTrash} className="mr-10" />
@@ -134,7 +139,7 @@ function MyReservations() {
       <AddReservation
         edit
         reservation={EditReservation.reservation}
-        cycle={EditReservation.reservation}
+        cycle={EditReservation.cycle}
         show={edit}
         showReservation={showEdit}
       />
