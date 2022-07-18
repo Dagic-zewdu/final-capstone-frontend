@@ -65,3 +65,14 @@ export const fetchReservationAsync = (id) => async (dispatch) => {
     dispatch(fetchReservationsError(err?.message));
   }
 };
+
+export const cancelReservation = (id, token, toast) => async (dispatch) => {
+  try {
+    showsInfoToast('canceling....', toast);
+    await httpCommon(token).delete(`reservation/${id}`);
+    showSuccessToast('Reservation canceled successfully', toast);
+    dispatch(fetchReservationsAsync());
+  } catch (err) {
+    showErrorToast(err, toast);
+  }
+};

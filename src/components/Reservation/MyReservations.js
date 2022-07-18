@@ -1,5 +1,7 @@
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMotorCyclesAsync } from '../../Redux/actions/motorcycle';
 import { fetchReservationsAsync } from '../../Redux/actions/reservation';
@@ -45,35 +47,44 @@ function MyReservations() {
               <th>Cylinder and acceleration</th>
               <th>Price</th>
               <th>Images</th>
-              <th style={{ textAlign: 'right' }}>Reserved At</th>
+              <th>Reserved at</th>
+              <th style={{ textAlign: 'right' }}>Cancel</th>
             </tr>
           </thead>
           <tbody>
             {
             myReservations.map((reserve, index) => (
               <tr key={reserve?.id}>
-                <th className="align-middle">{index + 1}</th>
-                <th className="align-middle">
+                <td className="align-middle">{index + 1}</td>
+                <td className="align-middle">
                   {
                     selectMotorcycle(reserve?.motorcycle_id)?.title
                 }
-                </th>
-                <th className="align-middle">dsf</th>
-                <th className="align-middle">
+                </td>
+                <td className="align-middle">dsf</td>
+                <td className="align-middle">
                   <p className="mb-0">
                     {2}
                     {' '}
                     cylinders
                   </p>
                   <p className="mb-0">acceleration</p>
-                </th>
-                <th className="align-middle">fds</th>
-                <th className="align-middle">fds</th>
-                <th className="align-middle" style={{ textAlign: 'right' }}>
+                </td>
+                <td className="align-middle">fds</td>
+                <td className="align-middle">fds</td>
+                <td className="align-middle">
+                  {' '}
                   {
-                    new Date(reserve?.created_at).toUTCString()
+                    new Date(reserve.created_at).toUTCString()
                 }
-                </th>
+
+                </td>
+                <td className="align-middle" style={{ textAlign: 'right' }}>
+                  <Button variant="outline-danger">
+                    <FontAwesomeIcon ico={faTrash} className="mr-10" />
+                    Cancel
+                  </Button>
+                </td>
               </tr>
             ))
           }
