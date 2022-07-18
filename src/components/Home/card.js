@@ -17,9 +17,9 @@ function HomeCard({ cycle }) {
           style={{ height: '400px', objectFit: 'cover', opacity: 2 }}
         />
       </div>
-      <Card.Title className="text-center mt-3 fa-4x">{cycle?.title}</Card.Title>
+      <Card.Title className="text-center mt-3 text-uppercase fa-4x" style={{ color: '#000', fontFamily: "'Passion One', cursive", letterSpacing: '2px', fontSize: '30px' }}>{cycle?.title}</Card.Title>
       <hr style={{ borderTop: '0.5px dashed #eee' }} />
-      <p className="text-center mb-5">{cycle?.description.slice(0, 50)}</p>
+      <p className="text-center mb-5" style={{ fontFamily: "'Passion One', cursive", fontSize: '17px' }}>{cycle?.description.slice(0, 50)}</p>
 
     </Card>
   );
