@@ -15,7 +15,6 @@ function AddReservation({
   useEffect(() => {
     if (edit) setState((s) => ({ ...s, phone: reservation?.phone ? reservation?.phone : '' }));
   }, [edit, reservation?.phone]);
-  console.log(state.phone);
   const dispatch = useDispatch();
   const { addToast } = useToasts();
   const { token } = useSelector((state) => state.account);
