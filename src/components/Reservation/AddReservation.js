@@ -1,17 +1,26 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { useToasts } from 'react-toast-notifications';
+import { addReservation } from '../../Redux/actions/reservation';
 import './styles/index.css';
 
 function AddReservation({ show, showReservation, cycle }) {
   const [state, setState] = useState({
     phone: '',
   });
+  const dispatch = useDispatch();
+  const { addToast } = useToasts();
+  const { token } = useSelector((state) => state.account);
   const handleChange = (e) => setState((s) => ({
     ...s, [e.target.id]: e.target.value,
   }));
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(addReservation({
+      motorcycle_id: cycle?.id,
+    }, token, addToast));
   };
   useEffect(() => {
     if (show) {
