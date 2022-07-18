@@ -6,20 +6,20 @@ import getRandomNumberBetween from '../../utils/utils';
 const bg = ['bg-info', 'bg-secondary', 'bg-warning'];
 function HomeCard({ cycle }) {
   return (
-    <Card className="border-0 bg-transparent rounded w-100" style={{ height: '500px' }}>
+    <Card className="border-0 bg-transparent rounded w-100" style={{ height: '700px' }}>
       <div
         className={`d-flex align-items-center justify-content-center rounded-circle w-100 ${bg[getRandomNumberBetween(3)]}`}
         style={{ height: '400px' }}
       >
         <Card.Img
-          className="rounded-circle p-4"
+          className="rounded-circle w-100"
           src={cycle?.images[getRandomNumberBetween(cycle?.images.length)]}
-          style={{ height: '300px', objectFit: 'cover', opacity: 2 }}
+          style={{ height: '400px', objectFit: 'cover', opacity: 2 }}
         />
       </div>
-      <Card.Title className="text-center fa-4x">{cycle?.title}</Card.Title>
+      <Card.Title className="text-center mt-3 fa-4x">{cycle?.title}</Card.Title>
       <hr style={{ borderTop: '0.5px dashed #eee' }} />
-      <p className="text-center">{cycle?.description.slice(0, 50)}</p>
+      <p className="text-center mb-5">{cycle?.description.slice(0, 50)}</p>
 
     </Card>
   );
