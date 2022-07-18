@@ -20,7 +20,7 @@ function AddReservation({ show, showReservation, cycle }) {
     e.preventDefault();
     dispatch(addReservation({
       motorcycle_id: cycle?.id,
-    }, token, addToast));
+    }, token, addToast, showReservation));
   };
   useEffect(() => {
     if (show) {

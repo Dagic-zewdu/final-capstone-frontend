@@ -2,6 +2,7 @@
 import httpCommon from '../../api';
 import { showErrorToast, showsInfoToast, showSuccessToast } from '../../shared/toast';
 import ReservationActionType from '../types/reservations';
+import { fetchMotorCycleAsync } from './motorcycle';
 
 export const fetchReservationsStart = () => ({
   type: ReservationActionType.FETCH_RESERVATIONS_START,
@@ -27,12 +28,14 @@ export const fetchReservationsAsync = () => async (dispatch) => {
   }
 };
 
-export const addReservation = (reservation, token, toast) => async (dispatch) => {
+export const addReservation = (reservation, token, toast, showReservation) => async (dispatch) => {
   try {
     showsInfoToast('Saving....', toast);
     await httpCommon(token).post('reservation', reservation);
-    showSuccessToast('Bicycle added successfully', toast);
+    showSuccessToast('Reservation added successfully', toast);
+    dispatch(fetchMotorCycleAsync(reservation?.motorcycle_id));
     dispatch(fetchReservationsAsync());
+    showReservation(false);
   } catch (err) {
     console.log(err);
     showErrorToast(err, toast);

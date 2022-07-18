@@ -1,5 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Table } from 'react-bootstrap';
+import {
+  Button, Card, Spinner, Table,
+} from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
@@ -14,6 +17,7 @@ function MotorCycleDetails() {
   const {
     data, loading, error, createdBy, reservations,
   } = useSelector((state) => state.motorcycles?.motorcycle);
+  const { currentUser, loading: userLoading } = useSelector((state) => state.account);
 
   const dispatch = useDispatch();
   const [show, showReservation] = useState(false);
@@ -24,6 +28,7 @@ function MotorCycleDetails() {
   }, [id]);
   const [image, setImage] = useState(data?.images[0]);
   useEffect(() => setImage(data?.images[0]), [data?.images]);
+
   return (
     <AllContainer navigation={false} loading={loading} error={error} data={['1']}>
       <div className="container">
@@ -77,10 +82,17 @@ function MotorCycleDetails() {
                     </h2>
                   ) : ''
               }
-              <Button variant="outline-warning" onClick={() => showReservation(true)}>
-                <h4>+ Reserve</h4>
+              {
+                userLoading
+                  ? <Spinner animation="grow" />
+                  : createdBy?.id !== currentUser?.id
+                    ? (
+                      <Button variant="outline-warning" onClick={() => showReservation(true)}>
+                        <h4>+ Reserve</h4>
 
-              </Button>
+                      </Button>
+                    ) : ''
+            }
               <div className="mt-3 w-100">
                 <Carousel
                   className="w-100"
@@ -108,7 +120,12 @@ function MotorCycleDetails() {
             <h4 className="mt-3 logo">{data?.title}</h4>
             <div className="mt-2 wrap">{data?.description}</div>
           </div>
-          <AddReservation cycle={data} show={show} showReservation={showReservation} />
+          <AddReservation
+            cycle={data}
+            show={show}
+            showReservation={showReservation}
+            createdBy={createdBy}
+          />
         </div>
       </div>
     </AllContainer>
