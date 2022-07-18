@@ -28,6 +28,12 @@
   transition: 0.3s;
 }
 
+.side-link a {
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
 .sidebar a:hover {
   color: #0d0d0d;
 }
@@ -69,17 +75,11 @@
   text-decoration: underline;
 }
 
-.side-link a{
-  color: #fff;
-  padding: 10px 20px;
-  font-weight: bold;
-}
-
-.side-link a:hover{
+.side-link a:hover {
   color: #fff;
 }
 
-.side-link .active{
+.side-link .active {
   background-color: rgb(158, 206, 63);
   color: #fff;
 }
