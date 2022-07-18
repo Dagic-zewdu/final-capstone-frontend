@@ -48,7 +48,7 @@ function MotorCycleDetails() {
                 <p className="info">Posted By</p>
                 <UserTemplate user={createdBy} />
               </div>
-              <Table>
+              <Table bordered>
                 <thead>
                   <tr>
                     <th className="align-middle">Title</th>

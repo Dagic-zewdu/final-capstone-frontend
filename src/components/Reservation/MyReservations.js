@@ -2,10 +2,12 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
+import Carousel from 'react-multi-carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
 import { fetchMotorCyclesAsync } from '../../Redux/actions/motorcycle';
 import { cancelReservation, fetchReservationsAsync } from '../../Redux/actions/reservation';
+import responsive from '../../utils/responsive';
 import AllContainer from '../Shared/AllContainer';
 
 function MyReservations() {
@@ -43,7 +45,7 @@ function MyReservations() {
       data={myReservations}
     >
       <div className="d-flex align-items-center justify-content-center w-100" style={{ minHeight: '100vh' }}>
-        <Table className="w-100">
+        <Table bordered>
           <thead>
             <tr>
               <th>index</th>
@@ -76,7 +78,22 @@ function MyReservations() {
                   <p className="mb-0">acceleration</p>
                 </td>
                 <td className="align-middle">fds</td>
-                <td className="align-middle">fds</td>
+                <td className="align-middle" style={{ maxWidth: 250 }}>
+                  <Carousel autoPlay responsive={responsive([1, 1, 1])}>
+                    { selectMotorcycle(reserve?.motorcycle_id)
+                      ? selectMotorcycle(reserve?.motorcycle_id)
+                        .images.map((image) => (
+                          <img
+                            src={image}
+                            style={{ height: 250, width: '100%', objectFit: 'cover' }}
+                            key={image}
+                            alt=""
+                          />
+                        ))
+                      : <p />}
+
+                  </Carousel>
+                </td>
                 <td className="align-middle">
                   {' '}
                   {
