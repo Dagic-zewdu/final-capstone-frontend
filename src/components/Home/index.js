@@ -17,7 +17,7 @@ function Home() {
   }, [data]);
   return (
     <AllContainer data={data} loading={loading} error={error}>
-      <div className="container h-100 d-flex align-items-center flex-column justify-content-center w-100">
+      <div className="container m-3 h-100 d-flex align-items-center flex-column justify-content-center w-100">
         <h1 className="display-2">Latest models</h1>
         <Carousel
           autoPlay
