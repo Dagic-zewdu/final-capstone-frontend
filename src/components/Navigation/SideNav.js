@@ -16,10 +16,10 @@ function SideNav() {
           </Link>
         </div>
         <div className="m-2 side-link">
-          <NavLink to="/motorcycles" exact activeClassName="active">MOTORCYCLES</NavLink>
-          <NavLink to="/reservations" activeClassName="active">MY RESERVATIONS</NavLink>
-          <NavLink to="/addmotorcycle" activeClassName="active">ADD MOTORCYCLE</NavLink>
-          <NavLink to="/requested" activeClassName="active">REQ. RESERVATIONS</NavLink>
+          <NavLink to="/motorcycles" exact activeClassName="active" style={{ fontFamily: "'Rubik', sans-serif" }} class="fw-bolder">MOTORCYCLES</NavLink>
+          <NavLink to="/reservations" activeClassName="active" style={{ fontFamily: "'Rubik', sans-serif" }} class="fw-bolder">MY RESERVATIONS</NavLink>
+          <NavLink to="/addmotorcycle" activeClassName="active" style={{ fontFamily: "'Rubik', sans-serif" }} class="fw-bolder">ADD MOTORCYCLE</NavLink>
+          <NavLink to="/requested" activeClassName="active" style={{ fontFamily: "'Rubik', sans-serif" }} class="fw-bolder">REQ. RESERVATIONS</NavLink>
         </div>
       </div>
       <div className="d-flex flex-column align-items-center justify-content-center">

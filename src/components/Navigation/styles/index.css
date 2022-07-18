@@ -72,11 +72,8 @@
 .side-link a{
   color: #fff;
   padding: 10px 20px;
+  font-size: 23px;
   font-weight: bold;
-}
-
-.side-link a:hover{
-  color: #fff;
 }
 
 .side-link .active{
