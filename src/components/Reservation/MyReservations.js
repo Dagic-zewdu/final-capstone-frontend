@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { useToasts } from 'react-toast-notifications';
 import { fetchMotorCyclesAsync } from '../../Redux/actions/motorcycle';
-import { fetchReservationsAsync } from '../../Redux/actions/reservation';
+import { cancelReservation, fetchReservationsAsync } from '../../Redux/actions/reservation';
 import AllContainer from '../Shared/AllContainer';
 
 function MyReservations() {
-  const { currentUser, loading: userLoading } = useSelector((state) => state.account);
+  const { currentUser, loading: userLoading, token } = useSelector((state) => state.account);
   const { data, loading, error } = useSelector((state) => state.reservations);
   const {
     data: motorcycles,
@@ -29,7 +30,11 @@ function MyReservations() {
       setReservations(myReservations);
     }
   }, [data, currentUser]);
+  const { addToast } = useToasts();
   const selectMotorcycle = (id) => motorcycles.find((motorcycle) => motorcycle?.id === id);
+  const CancelReservation = (id) => {
+    dispatch(cancelReservation(id, token, addToast));
+  };
   return (
     <AllContainer
       auth
@@ -80,7 +85,7 @@ function MyReservations() {
 
                 </td>
                 <td className="align-middle" style={{ textAlign: 'right' }}>
-                  <Button variant="outline-danger">
+                  <Button variant="outline-danger" onClick={() => CancelReservation(reserve?.id)}>
                     <FontAwesomeIcon ico={faTrash} className="mr-10" />
                     Cancel
                   </Button>
