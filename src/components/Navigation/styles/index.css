@@ -24,7 +24,7 @@
 .sidebar a {
   text-decoration: none;
   font-size: 20px;
-  color: #545454;
+  color: #000;
   display: block;
   transition: 0.3s;
 }
@@ -37,7 +37,7 @@
   transition: margin-left 0.5s;
   padding: 16px;
   margin-left: 300px;
-  background-color: #eee !important;
+  background-color: #efefef !important;
   min-height: 100vh;
 }
 
@@ -68,4 +68,20 @@
   font-style: italic;
   transform: rotate(-10deg);
   text-decoration: underline;
+}
+
+.side-link a{
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.side-link a:hover{
+  color: #fff;
+}
+
+.side-link .active{
+  background-color: #198754;
+  color: #fff;
 }
