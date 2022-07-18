@@ -75,6 +75,7 @@ function AddMotorCycle() {
                   controlId="floatingInput"
                   label="Model"
                   className="mb-3 mt-3 w-100"
+                  style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="text" onChange={handleChange} required id="model" placeholder="Model" />
                 </FloatingLabel>
@@ -82,6 +83,7 @@ function AddMotorCycle() {
                   controlId="floatingInput"
                   label="Cylinder"
                   className="mb-3 mt-3 w-100"
+                  style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="number" onChange={handleChange} required id="cylinder" placeholder="Model" />
                 </FloatingLabel>
@@ -89,6 +91,7 @@ function AddMotorCycle() {
                   controlId="floatingInput"
                   label="Acceleration"
                   className="mb-3 mt-3 w-100"
+                  style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="text" onChange={handleChange} required id="acceleration" placeholder="Model" />
                 </FloatingLabel>
@@ -96,6 +99,7 @@ function AddMotorCycle() {
                   controlId="floatingInput"
                   label="Title"
                   className="mb-3 w-100"
+                  style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="text" onChange={handleChange} required id="title" placeholder="Title" />
                 </FloatingLabel>
@@ -103,6 +107,7 @@ function AddMotorCycle() {
                   controlId="floatingInput"
                   label="Price"
                   className="mb-3 w-100"
+                  style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="number" onChange={handleChange} required id="price" placeholder="Price" />
                 </FloatingLabel>
@@ -110,6 +115,7 @@ function AddMotorCycle() {
                   controlId="floatingInput"
                   label="Duration in years"
                   className="mb-3 w-100"
+                  style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="number" onChange={handleChange} required id="duration" placeholder="Duration" />
                 </FloatingLabel>
@@ -117,6 +123,7 @@ function AddMotorCycle() {
                   controlId="floatingInput"
                   label="Discount by percent %"
                   className="mb-3 w-100"
+                  style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="number" onChange={handleChange} id="discount" placeholder="Discount" />
                 </FloatingLabel>
@@ -126,14 +133,15 @@ function AddMotorCycle() {
                     placeholder="description"
                     id="description"
                     onChange={handleChange}
-                    style={{ height: '200px' }}
+                    style={{ height: '200px', fontFamily: "'Rubik', sans-serif" }}
                   />
                 </FloatingLabel>
-                <div className="d-flex align-items-center w-100">
+                <div className="d-flex align-items-center w-100 justify-content-between">
                   <FloatingLabel
                     controlId="floatingInput"
                     label="Add image url"
                     className="w-75"
+                    style={{ fontFamily: "'Rubik', sans-serif" }}
                   >
                     <Form.Control
                       ref={ref}
@@ -146,10 +154,13 @@ function AddMotorCycle() {
                       id="images"
                       value={state.image}
                       placeholder="image"
+                      style={{ fontFamily: "'Rubik', sans-serif" }}
                     />
                   </FloatingLabel>
                   <Button
-                    variant="outline-info"
+                    variant="outline-info fw-bolder"
+                    style={{ fontFamily: "'Rubik', sans-serif" }}
+                    class="btn-lg p-3"
                     onClick={() => (state.image
                       ? !(state.images.find(({ image }) => image === state.image))
                         ? setState((s) => ({
@@ -190,7 +201,8 @@ function AddMotorCycle() {
                           <Button
                             type="button"
                             variant="outline-danger"
-                            className="fa-2x"
+                            className="fa-2x fw-bolder"
+                            style={{ fontFamily: "'Rubik', sans-serif" }}
                             onClick={() => removeImage(id)}
                           >
                             Remove
@@ -204,7 +216,8 @@ function AddMotorCycle() {
                 <Button
                   variant="outline-success"
                   type="submit"
-                  className="w-100 mt-4"
+                  className="w-100 mt-4 fw-bolder"
+                  style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   + Add Motorcycle
                 </Button>
