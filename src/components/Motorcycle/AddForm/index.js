@@ -74,7 +74,7 @@ function AddMotorCycle() {
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Model"
-                  className="mb-3 mt-3 w-100"
+                  className="mb-3 mt-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="text" onChange={handleChange} required id="model" placeholder="Model" />
@@ -82,7 +82,7 @@ function AddMotorCycle() {
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Cylinder"
-                  className="mb-3 mt-3 w-100"
+                  className="mb-3 mt-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="number" onChange={handleChange} required id="cylinder" placeholder="Model" />
@@ -90,7 +90,7 @@ function AddMotorCycle() {
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Acceleration"
-                  className="mb-3 mt-3 w-100"
+                  className="mb-3 mt-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="text" onChange={handleChange} required id="acceleration" placeholder="Model" />
@@ -98,7 +98,7 @@ function AddMotorCycle() {
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Title"
-                  className="mb-3 w-100"
+                  className="mb-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="text" onChange={handleChange} required id="title" placeholder="Title" />
@@ -106,7 +106,7 @@ function AddMotorCycle() {
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Price"
-                  className="mb-3 w-100"
+                  className="mb-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="number" onChange={handleChange} required id="price" placeholder="Price" />
@@ -114,7 +114,7 @@ function AddMotorCycle() {
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Duration in years"
-                  className="mb-3 w-100"
+                  className="mb-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="number" onChange={handleChange} required id="duration" placeholder="Duration" />
@@ -122,7 +122,7 @@ function AddMotorCycle() {
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Discount by percent %"
-                  className="mb-3 w-100"
+                  className="mb-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   <Form.Control type="number" onChange={handleChange} id="discount" placeholder="Discount" />
@@ -132,6 +132,7 @@ function AddMotorCycle() {
                     as="textarea"
                     placeholder="description"
                     id="description"
+                    class="fw-bolder"
                     onChange={handleChange}
                     style={{ height: '200px', fontFamily: "'Rubik', sans-serif" }}
                   />
@@ -140,7 +141,7 @@ function AddMotorCycle() {
                   <FloatingLabel
                     controlId="floatingInput"
                     label="Add image url"
-                    className="w-75"
+                    className="w-75 fw-bolder"
                     style={{ fontFamily: "'Rubik', sans-serif" }}
                   >
                     <Form.Control

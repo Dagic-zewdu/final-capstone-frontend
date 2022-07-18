@@ -14,11 +14,6 @@ code {
 
 a {
   text-decoration: none !important;
-  color: #545454 !important;
-}
-
-a:hover {
-  color: #111 !important;
 }
 
 a.active {

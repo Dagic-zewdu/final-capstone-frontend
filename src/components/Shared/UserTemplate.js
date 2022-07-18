@@ -14,7 +14,7 @@ function UserTemplate({ user }) {
         src={user?.photo}
       />
       <div className="d-flex flex-column justify-content-center">
-        <p className="mb-0">{user?.username}</p>
+        <p className="mb-0 fw-bolder text-capitalized fs-4">{user?.username}</p>
         <p className="mb-0 bolder"><small>{user?.email}</small></p>
       </div>
     </div>

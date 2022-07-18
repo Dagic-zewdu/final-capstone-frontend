@@ -69,6 +69,7 @@ function GoogleSignIn() {
               variant="outline-warning"
               onClick={renderProps.onClick}
               disabled={renderProps.disabled}
+              style={{ fontFamily: "'Rubik', sans-serif" }}
             >
               <FontAwesomeIcon icon={faGoogle} />
               Sign in
@@ -87,20 +88,22 @@ function GoogleSignIn() {
               src={currentUser?.photo}
             />
             <div className="d-flex flex-column justify-content-center">
-              <p className="mb-0">{currentUser?.username}</p>
-              <p className="mb-0"><small>{currentUser?.email}</small></p>
+              <p className="mb-0 fw-bolder text-capitalized" style={{ fontFamily: "'Rubik', sans-serif" }}>{currentUser?.username}</p>
+              <p className="mb-0" style={{ fontFamily: "'Rubik', sans-serif" }}><small>{currentUser?.email}</small></p>
             </div>
           </div>
           <NavDropdown title="" id="collasible-nav-dropdown">
             <GoogleLogout
               clientId={config.GoogleClientId}
               onLogoutSuccess={LogOutSuccess}
+              class="text-danger"
               render={(renderProps) => (
                 <NavDropdown.Item
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
+                  style={{ fontFamily: "'Rubik', sans-serif", fontSize: "14px", backgroundColor: '#dc3545', textAlign: 'center' }}
                 >
-                  Logout
+                  <span class="text-light fw-bolder">Logout</span>
                 </NavDropdown.Item>
               )}
             />
