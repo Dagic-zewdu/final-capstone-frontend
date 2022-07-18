@@ -1,4 +1,4 @@
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
@@ -102,6 +102,10 @@ function MyReservations() {
 
                 </td>
                 <td className="align-middle" style={{ textAlign: 'right' }}>
+                  <Button variant="outline-danger" className="mb-3" onClick={() => CancelReservation(reserve?.id)}>
+                    <FontAwesomeIcon ico={faPencil} className="mr-10" />
+                    Edit
+                  </Button>
                   <Button variant="outline-danger" onClick={() => CancelReservation(reserve?.id)}>
                     <FontAwesomeIcon ico={faTrash} className="mr-10" />
                     Cancel

@@ -31,7 +31,7 @@ export const fetchReservationsAsync = () => async (dispatch) => {
 export const addReservation = (reservation, token, toast, showReservation) => async (dispatch) => {
   try {
     showsInfoToast('Saving....', toast);
-    await httpCommon(token).post('reservation', reservation);
+    await httpCommon(token).post('/reservation', reservation);
     showSuccessToast('Reservation added successfully', toast);
     dispatch(fetchMotorCycleAsync(reservation?.motorcycle_id));
     dispatch(fetchReservationsAsync());
@@ -73,6 +73,21 @@ export const cancelReservation = (id, token, toast) => async (dispatch) => {
     showSuccessToast('Reservation canceled successfully', toast);
     dispatch(fetchReservationsAsync());
   } catch (err) {
+    showErrorToast(err, toast);
+  }
+};
+
+export const editReservation = (id, reservation, token,
+  toast, showReservation) => async (dispatch) => {
+  try {
+    showsInfoToast('Updating....', toast);
+    await httpCommon(token).put(`/reservation/${id}`, reservation);
+    showSuccessToast('Reservation updated successfully', toast);
+    dispatch(fetchMotorCycleAsync(reservation?.motorcycle_id));
+    dispatch(fetchReservationsAsync());
+    showReservation(false);
+  } catch (err) {
+    console.log(err);
     showErrorToast(err, toast);
   }
 };

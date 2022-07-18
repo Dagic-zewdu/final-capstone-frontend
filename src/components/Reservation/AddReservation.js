@@ -3,13 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToasts } from 'react-toast-notifications';
-import { addReservation } from '../../Redux/actions/reservation';
+import { addReservation, editReservation } from '../../Redux/actions/reservation';
 import './styles/index.css';
 
-function AddReservation({ show, showReservation, cycle }) {
+function AddReservation({
+  show, showReservation, cycle, edit = false, reservation,
+}) {
   const [state, setState] = useState({
     phone: '',
   });
+  useEffect(() => {
+    if (edit) setState((s) => ({ ...s, phone: reservation?.phone }));
+  }, [edit]);
   const dispatch = useDispatch();
   const { addToast } = useToasts();
   const { token } = useSelector((state) => state.account);
@@ -18,9 +23,15 @@ function AddReservation({ show, showReservation, cycle }) {
   }));
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addReservation({
-      motorcycle_id: cycle?.id,
-    }, token, addToast, showReservation));
+    if (!edit) {
+      dispatch(addReservation({
+        motorcycle_id: cycle?.id,
+      }, token, addToast, showReservation));
+    } else {
+      dispatch(editReservation(reservation?.id, {
+        motorcycle_id: cycle?.id,
+      }, token, addToast, showReservation));
+    }
   };
   useEffect(() => {
     if (show) {
@@ -55,7 +66,7 @@ function AddReservation({ show, showReservation, cycle }) {
               variant="outline-success"
               type="submit"
             >
-              Reserve
+              {!edit ? 'Reserve' : 'Update'}
             </Button>
           </div>
 
