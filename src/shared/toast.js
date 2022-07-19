@@ -14,3 +14,7 @@ export const showSuccessWarning = (message, toast) => toast(message, {
   appearance: 'warning',
   autoDismiss: true,
 });
+export const showsInfoToast = (message, toast) => toast(message, {
+  appearance: 'info',
+  autoDismiss: true,
+});

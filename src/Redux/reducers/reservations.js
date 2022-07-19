@@ -1,64 +1,64 @@
-import motorActionTypes from '../types/motorcyles';
+import ReservationActionType from '../types/reservations';
 
 const initialState = {
   loading: true,
   data: [],
   error: false,
-  motorcycle: {
+  reservation: {
     loading: true,
     data: null,
     createdBy: null,
     reservations: 0,
+    motorcycle: null,
     error: false,
   },
 };
 
-const motorcycleReducer = (state = initialState, { type, payload }) => {
+const reservationReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case motorActionTypes.FETCH_MOTORCYCLES_START:
+    case ReservationActionType.FETCH_RESERVATIONS_START:
       return {
         ...state,
         loading: true,
       };
-    case motorActionTypes.FETCH_MOTORCYCLES_SUCCESS:
+    case ReservationActionType.FETCH_RESERVATIONS_SUCCESS:
       return {
         ...state,
         loading: false,
         data: payload,
         error: false,
       };
-    case motorActionTypes.FETCH_MOTORCYCLES_ERROR:
+    case ReservationActionType.FETCH_RESERVATIONS_ERROR:
       return {
         ...state,
         loading: false,
         error: payload,
       };
-    case motorActionTypes.FETCH_MOTORCYCLE_START:
+    case ReservationActionType.FETCH_RESERVATION_START:
       return {
         ...state,
-        motorcycle: {
-          ...state.motorcycle,
+        reservation: {
+          ...state.reservation,
           loading: true,
-          error: false,
         },
       };
-    case motorActionTypes.FETCH_MOTORCYCLE_SUCCESS:
+    case ReservationActionType.FETCH_RESERVATION_SUCCESS:
       return {
         ...state,
-        motorcycle: {
-          ...state.motorcycle,
+        reservation: {
+          ...state.reservation,
           loading: false,
-          data: payload?.motrcycle,
+          reservation: payload?.reservation,
           createdBy: payload?.created_by,
-          reservations: payload?.reservations,
+          motorcycle: payload?.motorcycle,
           error: false,
         },
       };
-    case motorActionTypes.FETCH_MOTORCYCLE_ERROR:
+    case ReservationActionType.FETCH_RESERVATION_ERROR:
       return {
         ...state,
-        motorcycle: {
-          ...state.motorcycle,
+        reservation: {
+          ...state.reservation,
           loading: false,
           error: payload,
         },
@@ -67,4 +67,4 @@ const motorcycleReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default motorcycleReducer;
+export default reservationReducer;

@@ -75,11 +75,11 @@
   text-decoration: underline;
 }
 
-.side-link .active {
-  background-color: rgb(158, 206, 63);
+.side-link a:hover {
   color: #fff;
 }
 
-.side-link a:hover {
+.side-link .active {
+  background-color: rgb(158, 206, 63);
   color: #fff;
 }
