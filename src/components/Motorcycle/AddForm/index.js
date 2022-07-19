@@ -66,11 +66,13 @@ function AddMotorCycle() {
           <div className="col-lg-6">
             <form onSubmit={handleSubmit}>
               <div className="d-flex align-items-center flex-column justify-content-center">
-                <h1 className="viral">
-                  {' '}
-                  Add Motorcycle
-                  <FontAwesomeIcon icon={faMotorcycle} style={{ marginRight: 10 }} class="" />
-                </h1>
+                <div class="d-flex justify-content-between align-items-center">
+                  <h1 className="viral">
+                    {' '}
+                    Add Motorcycle
+                  </h1>
+                  <FontAwesomeIcon icon={faMotorcycle} style={{ marginRight: 10, color: 'rgb(158, 206, 63)', fontSize: '45px' }} />
+                </div>
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Model"
