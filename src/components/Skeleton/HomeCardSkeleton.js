@@ -21,8 +21,12 @@ function HomeCardSkeleton() {
               className="d-flex align-items-center justify-content-center rounded-circle w-100"
               style={{ height: '400px' }}
             >
-              <Placeholder as={Card.Title} animation="glow" style={{ height: '400px' }}>
-                <Placeholder xs={12} style={{ height: '200px' }} />
+              <Placeholder
+                as={Card.Title}
+                animation="glow"
+                style={{ height: '400px', width: '100%', borderRadius: '100px' }}
+              >
+                <Placeholder xs={12} style={{ height: '400px', borderRadius: '300px' }} />
               </Placeholder>
             </div>
             <Placeholder
@@ -33,7 +37,7 @@ function HomeCardSkeleton() {
                 color: '#000', fontFamily: "'Passion One', cursive", letterSpacing: '2px', fontSize: '30px',
               }}
             >
-              <Placeholder xs={6} style={{ height: '200px' }} />
+              <Placeholder xs={6} />
             </Placeholder>
             <hr style={{ borderTop: '0.5px dashed #eee' }} />
             <Placeholder as={Card.Title} animation="glow">

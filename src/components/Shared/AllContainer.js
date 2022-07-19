@@ -40,7 +40,7 @@ function AllContainer({
       ? <LoadingContainer type={loadingType} />
       : error
         ? <ErrorContainer error={error} />
-        : data.length ? <HomeCardSkeleton /> : (
+        : data.length ? children : (
           <div className="d-flex flex-column align-items-center justify-content-center">
             <FontAwesomeIcon icon={faMotorcycle} className="fa-3x" />
             <h1 className="mt-4">No data yet</h1>
