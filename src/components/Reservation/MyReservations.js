@@ -59,15 +59,14 @@ function MyReservations() {
         <Table bordered>
           <thead>
             <tr>
-              <th></th>
-              <th class="text-uppercase fw-bolder text-center">Motorcycle title</th>
-              <th class="text-uppercase fw-bolder text-center">Motorcycle Model</th>
-              <th class="text-uppercase fw-bolder text-center">Cylinder and acceleration</th>
-              <th class="text-uppercase fw-bolder text-center">Price</th>
-              <th class="text-uppercase fw-bolder text-center">Images</th>
-              <th class="text-uppercase fw-bolder text-center">Reserved at</th>
-              <th class="text-uppercase fw-bolder text-center">Contact Phone</th>
-              <th class="text-uppercase fw-bolder text-center" style={{ textAlign: 'right' }}>Actions</th>
+              <th className="text-uppercase fw-bolder text-center">Motorcycle title</th>
+              <th className="text-uppercase fw-bolder text-center">Motorcycle Model</th>
+              <th className="text-uppercase fw-bolder text-center">Cylinder and acceleration</th>
+              <th className="text-uppercase fw-bolder text-center">Price</th>
+              <th className="text-uppercase fw-bolder text-center">Images</th>
+              <th className="text-uppercase fw-bolder text-center">Reserved at</th>
+              <th className="text-uppercase fw-bolder text-center">Contact Phone</th>
+              <th className="text-uppercase fw-bolder text-center" style={{ textAlign: 'right' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -128,7 +127,7 @@ function MyReservations() {
                   </Button>
                   <Button variant="outline-danger" onClick={() => CancelReservation(reserve?.id)}>
                     <FontAwesomeIcon ico={faTrash} className="mr-10" />
-                    <span class="fw-bolder" >Cancel</span>
+                    <span className="fw-bolder">Cancel</span>
                   </Button>
                 </td>
               </tr>

@@ -102,9 +102,11 @@ function GoogleSignIn() {
                 <NavDropdown.Item
                   onClick={renderProps.onClick}
                   disabled={renderProps.disabled}
-                  style={{ fontFamily: "'Rubik', sans-serif", fontSize: "14px", backgroundColor: '#dc3545', textAlign: 'center' }}
+                  style={{
+                    fontFamily: "'Rubik', sans-serif", fontSize: '14px', backgroundColor: '#dc3545', textAlign: 'center',
+                  }}
                 >
-                  <span class="text-light fw-bolder">Logout</span>
+                  <span className="text-light fw-bolder">Logout</span>
                 </NavDropdown.Item>
               )}
             />
