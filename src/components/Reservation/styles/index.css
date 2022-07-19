@@ -28,3 +28,22 @@
   display: flex;
   justify-content: end;
 }
+
+.title {
+  font-family: 'Rubik', sans-serif;
+  font-size: 35px;
+  text-transform: uppercase;
+  color: #eee;
+}
+
+.desc {
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  color: #eee;
+}
+
+.btn-reserve {
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  color: #eee;
+}
