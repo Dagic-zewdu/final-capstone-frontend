@@ -9,7 +9,7 @@ function Motorcycles() {
   const { data, loading, error } = useSelector((state) => state.motorcycles);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!data.length) { dispatch(fetchMotorCyclesAsync()); }
+    dispatch(fetchMotorCyclesAsync());
   }, []);
   return (
     <AllContainer data={data} loadingType="motorcycles" loading={loading} error={error}>

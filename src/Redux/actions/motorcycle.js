@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import httpCommon from '../../api';
-import { showErrorToast, showSuccessToast } from '../../shared/toast';
+import { showErrorToast, showsInfoToast, showSuccessToast } from '../../shared/toast';
 import motorActionTypes from '../types/motorcyles';
 
 export const fetchMotorcyclesStart = () => ({
@@ -29,6 +29,7 @@ export const fetchMotorCyclesAsync = () => async (dispatch) => {
 
 export const addMotorcycleAsync = (user, token, toast) => async (dispatch) => {
   try {
+    showsInfoToast('Saving....', toast);
     await httpCommon(token).post('/motorcycle', user);
     showSuccessToast('Bicycle added successfully', toast);
     dispatch(fetchMotorCyclesAsync());

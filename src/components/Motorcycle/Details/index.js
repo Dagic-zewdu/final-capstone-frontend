@@ -1,10 +1,14 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Table } from 'react-bootstrap';
+import {
+  Button, Card, Spinner, Table,
+} from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { fetchMotorCycleAsync } from '../../../Redux/actions/motorcycle';
 import responsive from '../../../utils/responsive';
+import AddReservation from '../../Reservation/AddReservation';
 import AllContainer from '../../Shared/AllContainer';
 import UserTemplate from '../../Shared/UserTemplate';
 import '../styles/index.css';
@@ -12,11 +16,12 @@ import '../styles/index.css';
 function MotorCycleDetails() {
   const { id } = useParams();
   const {
-    data, loading, error, createdBy,
+    data, loading, error, createdBy, reservations,
   } = useSelector((state) => state.motorcycles?.motorcycle);
+  const { currentUser, loading: userLoading } = useSelector((state) => state.account);
 
   const dispatch = useDispatch();
-
+  const [show, showReservation] = useState(false);
   useEffect(() => {
     if (data?.id !== id) {
       dispatch(fetchMotorCycleAsync(id));
@@ -24,6 +29,7 @@ function MotorCycleDetails() {
   }, [id]);
   const [image, setImage] = useState(data?.images[0]);
   useEffect(() => setImage(data?.images[0]), [data?.images]);
+
   return (
     <AllContainer navigation={false} loading={loading} error={error} data={['1']}>
       <div className="container">
@@ -43,7 +49,7 @@ function MotorCycleDetails() {
                 <p className="info fw-bolder">Posted By</p>
                 <UserTemplate user={createdBy} />
               </div>
-              <Table>
+              <Table bordered>
                 <thead>
                   <tr>
                     <th className="align-middle detail-content">Title</th>
@@ -67,10 +73,27 @@ function MotorCycleDetails() {
                   </tr>
                 </thead>
               </Table>
-              <Button variant="outline-primary" style={{ fontFamily: "'Rubik', sans-serif" }}>
-                <span class="fs-4 fw-bolder">+ Reserve</span>
+              {
+                reservations
+                  ? (
+                    <h2>
+                      {reservations}
+                      {' '}
+                      Reservations
+                    </h2>
+                  ) : ''
+              }
+              {
+                userLoading
+                  ? <Spinner animation="grow" />
+                  : createdBy?.id !== currentUser?.id
+                    ? (
+                      <Button variant="outline-warning" onClick={() => showReservation(true)}>
+                        <h4>+ Reserve</h4>
 
-              </Button>
+                      </Button>
+                    ) : ''
+            }
               <div className="mt-3 w-100">
                 <Carousel
                   className="w-100"
@@ -98,6 +121,12 @@ function MotorCycleDetails() {
             <h4 className="mt-3 fs-2 text-uppercase fw-bolder m-3" style={{ fontFamily: "'Rubik', sans-serif" }}>{data?.title}</h4>
             <div className="mt-2 wrap fw-bolder text-secondary" style={{ fontFamily: "'Rubik', sans-serif" }}>{data?.description}</div>
           </div>
+          <AddReservation
+            cycle={data}
+            show={show}
+            showReservation={showReservation}
+            createdBy={createdBy}
+          />
         </div>
       </div>
     </AllContainer>
