@@ -60,7 +60,7 @@ function MotorCycleCard({ key, cycle }) {
                     {' '}
                     cylinders
                   </p>
-                  <p class="fw-bolder" style={{ fontFamily: "'Rubik', sans-serif" }}>{cycle?.acceleration}</p>
+                  <p className="fw-bolder" style={{ fontFamily: "'Rubik', sans-serif" }}>{cycle?.acceleration}</p>
                 </div>
                 <div className="d-flex align-items-center justify-content-center">
                   <p className="fw-bolder m-2 text-warning" style={{ fontFamily: "'Rubik', sans-serif" }}>

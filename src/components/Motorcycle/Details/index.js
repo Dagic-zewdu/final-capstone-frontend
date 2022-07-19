@@ -76,7 +76,7 @@ function MotorCycleDetails() {
               {
                 reservations
                   ? (
-                    <h2 class="fs-2 fw-bolder" style={{ fontFamily: "'Rubik', sans-serif" }}>
+                    <h2 className="fs-2 fw-bolder" style={{ fontFamily: "'Rubik', sans-serif" }}>
                       {reservations}
                       {' '}
                       Reservations
@@ -89,7 +89,7 @@ function MotorCycleDetails() {
                   : createdBy?.id !== currentUser?.id
                     ? (
                       <Button variant="outline-primary" class="border rounded-pill" style={{ fontFamily: "'Rubik', sans-serif" }} onClick={() => showReservation(true)}>
-                        <h4 class="fw-bolder fs-5 p-1">+ Reserve</h4>
+                        <h4 className="fw-bolder fs-5 p-1">+ Reserve</h4>
 
                       </Button>
                     ) : ''
