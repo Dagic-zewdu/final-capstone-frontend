@@ -69,7 +69,7 @@ function AddMotorCycle() {
                 <h1 className="viral">
                   {' '}
                   Add Motorcycle
-                  <FontAwesomeIcon icon={faMotorcycle} style={{ marginRight: 10 }} />
+                  <FontAwesomeIcon icon={faMotorcycle} style={{ marginRight: 10 }} class="" />
                 </h1>
                 <FloatingLabel
                   controlId="floatingInput"

@@ -6,7 +6,7 @@ import getRandomNumberBetween from '../../utils/utils';
 const bg = ['bg-info', 'bg-secondary', 'bg-warning'];
 function HomeCard({ cycle }) {
   return (
-    <Card className="border-0 bg-transparent rounded w-100" style={{ height: '700px' }}>
+    <Card className="border-0 bg-transparent rounded w-100 mt-5" style={{ height: '700px' }}>
       <div
         className={`d-flex align-items-center justify-content-center rounded-circle w-100 ${bg[getRandomNumberBetween(3)]}`}
         style={{ height: '400px' }}
