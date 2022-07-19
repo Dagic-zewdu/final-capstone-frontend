@@ -55,10 +55,11 @@ function MyReservations() {
       error={error}
       data={myReservations}
     >
-      <div className="d-flex table-cont justify-content-center w-100" style={{ minHeight: '' }}>
+      <div className="d-flex table-cont justify-content-center w-100 container" style={{ minHeight: '' }}>
         <Table bordered>
           <thead>
             <tr>
+            <th className="text-uppercase fw-bolder text-center">Index</th>
               <th className="text-uppercase fw-bolder text-center">Motorcycle title</th>
               <th className="text-uppercase fw-bolder text-center">Motorcycle Model</th>
               <th className="text-uppercase fw-bolder text-center">Cylinder and acceleration</th>

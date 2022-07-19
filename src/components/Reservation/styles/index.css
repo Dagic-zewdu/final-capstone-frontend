@@ -38,8 +38,9 @@
 
 .desc {
   font-family: 'Rubik', sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   color: #eee;
+  text-align: center;
 }
 
 .btn-reserve {
