@@ -45,12 +45,11 @@ function AddReservation({
   return (
     <div id="myNav" className="overlay" style={{ height: show ? '100%' : '0%' }}>
       <Button
-        className="closebtn mt-4"
+        className="closebtn mt-4 fs-3 border-0 text-light fw-bolder"
         variant="outline-dark"
         onClick={() => showReservation(false)}
       >
-        &times;
-        close
+        X Close
       </Button>
       <div className="overlay-content">
         <h5>{cycle?.title}</h5>
