@@ -47,27 +47,27 @@ function MotorCycleDetails() {
                 <thead>
                   <tr>
                     <th className="align-middle detail-content">Title</th>
-                    <th className="align-middle detail-content">{data?.title}</th>
+                    <th className="align-middle detail-content fw-bolder text-uppercase">{data?.title}</th>
                   </tr>
                   <tr>
                     <th className="align-middle detail-content">Model</th>
-                    <th className="align-middle detail-content">{data?.model}</th>
+                    <th className="align-middle detail-content fw-bolder">{data?.model}</th>
                   </tr>
                   <tr>
                     <th className="align-middle detail-content">Acceleration</th>
-                    <th className="align-middle detail-content">{data?.acceleration}</th>
+                    <th className="align-middle detail-content fw-bolder">{data?.acceleration}</th>
                   </tr>
                   <tr>
                     <th className="align-middle detail-content">Cylinder</th>
-                    <th className="align-middle detail-content">{data?.cylinder}</th>
+                    <th className="align-middle detail-content fw-bolder">{data?.cylinder}</th>
                   </tr>
                   <tr>
                     <th className="align-middle detail-content">Price</th>
-                    <th className="align-middle detail-content">{data?.price}</th>
+                    <th className="align-middle detail-content fw-bolder">{data?.price}</th>
                   </tr>
                 </thead>
               </Table>
-              <Button variant="outline-warning" style={{ fontFamily: "'Rubik', sans-serif" }}>
+              <Button variant="outline-primary" style={{ fontFamily: "'Rubik', sans-serif" }}>
                 <span class="fs-4 fw-bolder">+ Reserve</span>
 
               </Button>
@@ -83,7 +83,7 @@ function MotorCycleDetails() {
                         key={i}
                         src={i}
                         style={{ objectFit: 'cover' }}
-                        className={i === image ? 'border border-info' : ''}
+                        className={i === image ? 'border border-0 cursor' : ''}
                         onClick={() => setImage(i)}
                       />
                     ))
@@ -94,9 +94,9 @@ function MotorCycleDetails() {
             </div>
           </div>
 
-          <div className="col-lg-12 w-100 d-flex justify-content-center">
-            <h4 className="mt-3 logo">{data?.title}</h4>
-            <div className="mt-2 wrap">{data?.description}</div>
+          <div className="col-lg-12 w-100 d-flex justify-content-evenly mt-3 mb-2">
+            <h4 className="mt-3 fs-2 text-uppercase fw-bolder m-3" style={{ fontFamily: "'Rubik', sans-serif" }}>{data?.title}</h4>
+            <div className="mt-2 wrap fw-bolder text-secondary" style={{ fontFamily: "'Rubik', sans-serif" }}>{data?.description}</div>
           </div>
         </div>
       </div>
