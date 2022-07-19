@@ -69,9 +69,10 @@ function GoogleSignIn() {
               variant="outline-warning"
               onClick={renderProps.onClick}
               disabled={renderProps.disabled}
+              class="m-2 fs-4 w-100"
               style={{ fontFamily: "'Rubik', sans-serif" }}
             >
-              <FontAwesomeIcon icon={faGoogle} />
+              <FontAwesomeIcon icon={faGoogle} style={{ color: 'red' }} class="fw-bolder fs-5" />
               Sign in
             </Button>
           )}
