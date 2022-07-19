@@ -1,6 +1,8 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import CyclesSkeleton from '../Skeleton/CyclesSkeleton';
+import HomeCardSkeleton from '../Skeleton/HomeCardSkeleton';
 import Spinner from './Spinner';
 
 function LoadingContainer({ type = 'spinner' }) {
@@ -8,11 +10,13 @@ function LoadingContainer({ type = 'spinner' }) {
 
     type === 'motorcycles'
       ? <CyclesSkeleton />
-      : (
-        <div className="d-flex align-items-center justify-content-center">
-          <Spinner />
-        </div>
-      )
+      : type === 'homePage'
+        ? <HomeCardSkeleton />
+        : (
+          <div className="d-flex align-items-center justify-content-center">
+            <Spinner />
+          </div>
+        )
 
   );
 }
