@@ -6,6 +6,7 @@ import {
 import Carousel from 'react-multi-carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import ReactTimeAgo from 'react-time-ago';
 import { fetchMotorCycleAsync } from '../../../Redux/actions/motorcycle';
 import responsive from '../../../utils/responsive';
 import AddReservation from '../../Reservation/AddReservation';
@@ -19,7 +20,7 @@ function MotorCycleDetails() {
     data, loading, error, createdBy, reservations,
   } = useSelector((state) => state.motorcycles?.motorcycle);
   const { currentUser, loading: userLoading } = useSelector((state) => state.account);
-
+  const {data:reservations,loading:reservationLoading} = useSelector((state) => state.reservation);
   const dispatch = useDispatch();
   const [show, showReservation] = useState(false);
   useEffect(() => {
@@ -31,7 +32,7 @@ function MotorCycleDetails() {
   useEffect(() => setImage(data?.images[0]), [data?.images]);
 
   return (
-    <AllContainer navigation={false} loading={loading} error={error} data={['1']}>
+    <AllContainer navigation={false} loading={loading&&reservationLoading} error={error} data={['1']}>
       <div className="container">
         <div className="row">
           <div className="col-lg-9">
@@ -48,6 +49,13 @@ function MotorCycleDetails() {
               <div className="d flex flex-column justify-content-start" style={{ fontFamily: "'Rubik', sans-serif" }}>
                 <p className="info fw-bolder">Posted By</p>
                 <UserTemplate user={createdBy} />
+                <p>
+                  {' '}
+                  { new Date(data?.created_at).toUTCString().slice(0, 16)}
+                </p>
+                <p>
+                  <ReactTimeAgo date={data?.created_at} locale="en-US" />
+                </p>
               </div>
               <Table bordered>
                 <thead>
