@@ -44,6 +44,10 @@
 
 .btn-reserve {
   font-family: 'Rubik', sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   color: #eee;
+}
+
+.form-cont {
+  margin-top: 40px;
 }
