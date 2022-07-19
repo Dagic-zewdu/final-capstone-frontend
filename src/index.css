@@ -14,10 +14,12 @@ code {
 
 a {
   text-decoration: none !important;
+  font-family: 'Passion One', cursive;
 }
 
 a.active {
-  color: rgb(196, 242, 105);
+  color: #fff;
+  background-color: rgb(158, 206, 63);
 }
 
 small {
@@ -35,4 +37,20 @@ small {
 
 .wrap {
   white-space: pre-wrap !important;
+}
+
+@media only screen and (max-width: 768px) {
+  a {
+    text-decoration: none !important;
+    font-family: 'Passion One', cursive;
+    color: #000 !important;
+    padding: 10px;
+    letter-spacing: 1px;
+    font-size: 25px;
+  }
+
+  a.active {
+    background-color: yellowgreen;
+    margin: auto;
+  }
 }

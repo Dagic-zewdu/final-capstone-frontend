@@ -47,6 +47,7 @@
 
   .logo {
     transform: rotate(-10deg) !important;
+    color: #000;
   }
 }
 
