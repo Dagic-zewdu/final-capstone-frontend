@@ -16,3 +16,12 @@
 .ml-10 {
   margin-left: 10px;
 }
+
+.detail-content {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 300;
+}
+
+.cursor {
+  cursor: pointer;
+}

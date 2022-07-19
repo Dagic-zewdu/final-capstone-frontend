@@ -43,26 +43,27 @@ function MotorCycleCard({ key, cycle }) {
                 backgroundColor: '#111',
                 color: '#fff',
                 bottom: 0,
+                fontFamily: "'Rubik', sans-serif",
                 opacity: 0.75,
                 display: body ? 'block' : 'none',
                 transition: '1s ease',
               }}
             >
-              <h3 className="text-center mb-0">{cycle?.title}</h3>
-              <p className="text-center mb-0">{cycle?.model}</p>
+              <h3 className="text-center mb-0 text-uppercase fs-3 fw-bolder" style={{ fontFamily: "'Rubik', sans-serif" }}>{cycle?.title}</h3>
+              <p className="text-center mb-0" style={{ fontFamily: "'Rubik', sans-serif" }}>{cycle?.model}</p>
               <div
                 className="d-flex justify-content-between align-items-center w-100 py-1 px-1"
               >
-                <div className="d-flex flex-column justify-content-center">
-                  <p className="mb-0">
+                <div className="d-flex flex-column justify-content-center m-2">
+                  <p className="mb-0 fw-bolder" style={{ fontFamily: "'Rubik', sans-serif" }}>
                     {cycle?.cylinder}
                     {' '}
                     cylinders
                   </p>
-                  <p>{cycle?.acceleration}</p>
+                  <p class="fw-bolder" style={{ fontFamily: "'Rubik', sans-serif" }}>{cycle?.acceleration}</p>
                 </div>
                 <div className="d-flex align-items-center justify-content-center">
-                  <p className="bolder">
+                  <p className="fw-bolder m-2 text-warning" style={{ fontFamily: "'Rubik', sans-serif" }}>
                     $
                     {' '}
                     {cycle?.price}

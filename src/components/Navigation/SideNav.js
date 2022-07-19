@@ -12,7 +12,7 @@ function SideNav() {
       <div className="d-flex flex-column justify-content-between" style={{ height: '50%' }}>
         <div className="">
           <Link to="/">
-            <h1 className="font-italic logo display-4 text-center">Bcycom</h1>
+            <h1 className="font-italic logo display-4 text-center text-dark">Bcycom</h1>
           </Link>
         </div>
         <div className="m-2 side-link">

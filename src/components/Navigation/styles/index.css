@@ -28,21 +28,11 @@
   transition: 0.3s;
 }
 
-.side-link a {
-  color: #fff;
-  padding: 10px 20px;
-  font-weight: bold;
-}
-
-.sidebar a:hover {
-  color: #0d0d0d;
-}
-
 #main {
   transition: margin-left 0.5s;
   padding: 16px;
   margin-left: 300px;
-  background-color: #efefef !important;
+  background-color: #fffbfb !important;
   min-height: 100vh;
 }
 
@@ -57,6 +47,7 @@
 
   .logo {
     transform: rotate(-10deg) !important;
+    color: #000;
   }
 }
 
@@ -75,8 +66,12 @@
   text-decoration: underline;
 }
 
-.side-link a:hover {
-  color: #fff;
+.side-link a {
+  color: #000;
+  padding: 10px 20px;
+  font-size: 25px;
+  font-family: 'Passion One', cursive;
+  letter-spacing: 1px;
 }
 
 .side-link .active {

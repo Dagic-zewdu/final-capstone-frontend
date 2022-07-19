@@ -11,6 +11,7 @@ import responsive from '../../../utils/responsive';
 import AddReservation from '../../Reservation/AddReservation';
 import AllContainer from '../../Shared/AllContainer';
 import UserTemplate from '../../Shared/UserTemplate';
+import '../styles/index.css';
 
 function MotorCycleDetails() {
   const { id } = useParams();
@@ -35,7 +36,7 @@ function MotorCycleDetails() {
         <div className="row">
           <div className="col-lg-9">
             <Link to="/">
-              <h1 className="font-italic logo display-4">Bcycom</h1>
+              <h1 className="font-italic logo display-4 text-dark">Bcycom</h1>
             </Link>
             <div className="mt-4">
               <img src={image} alt="" className="w-100" />
@@ -44,38 +45,38 @@ function MotorCycleDetails() {
           </div>
           <div className="col-lg-3" style={{ height: '100vh' }}>
             <div className="flex-column justify-content-around d-flex align-items-center w-100" style={{ height: '100%' }}>
-              <div className="d flex flex-column justify-content-start">
-                <p className="info">Posted By</p>
+              <div className="d flex flex-column justify-content-start" style={{ fontFamily: "'Rubik', sans-serif" }}>
+                <p className="info fw-bolder">Posted By</p>
                 <UserTemplate user={createdBy} />
               </div>
               <Table bordered>
                 <thead>
                   <tr>
-                    <th className="align-middle">Title</th>
-                    <th className="align-middle">{data?.title}</th>
+                    <th className="align-middle detail-content">Title</th>
+                    <th className="align-middle detail-content fw-bolder text-uppercase">{data?.title}</th>
                   </tr>
                   <tr>
-                    <th className="align-middle">Model</th>
-                    <th className="align-middle">{data?.model}</th>
+                    <th className="align-middle detail-content">Model</th>
+                    <th className="align-middle detail-content fw-bolder">{data?.model}</th>
                   </tr>
                   <tr>
-                    <th className="align-middle">Acceleration</th>
-                    <th className="align-middle">{data?.acceleration}</th>
+                    <th className="align-middle detail-content">Acceleration</th>
+                    <th className="align-middle detail-content fw-bolder">{data?.acceleration}</th>
                   </tr>
                   <tr>
-                    <th className="align-middle">Cylinder</th>
-                    <th className="align-middle">{data?.cylinder}</th>
+                    <th className="align-middle detail-content">Cylinder</th>
+                    <th className="align-middle detail-content fw-bolder">{data?.cylinder}</th>
                   </tr>
                   <tr>
-                    <th className="align-middle">Price</th>
-                    <th className="align-middle">{data?.price}</th>
+                    <th className="align-middle detail-content">Price</th>
+                    <th className="align-middle detail-content fw-bolder">{data?.price}</th>
                   </tr>
                 </thead>
               </Table>
               {
                 reservations
                   ? (
-                    <h2>
+                    <h2 class="fs-2 fw-bolder" style={{ fontFamily: "'Rubik', sans-serif" }}>
                       {reservations}
                       {' '}
                       Reservations
@@ -87,8 +88,8 @@ function MotorCycleDetails() {
                   ? <Spinner animation="grow" />
                   : createdBy?.id !== currentUser?.id
                     ? (
-                      <Button variant="outline-warning" onClick={() => showReservation(true)}>
-                        <h4>+ Reserve</h4>
+                      <Button variant="outline-primary" class="border rounded-pill" style={{ fontFamily: "'Rubik', sans-serif" }} onClick={() => showReservation(true)}>
+                        <h4 class="fw-bolder fs-5 p-1">+ Reserve</h4>
 
                       </Button>
                     ) : ''
@@ -105,7 +106,7 @@ function MotorCycleDetails() {
                         key={i}
                         src={i}
                         style={{ objectFit: 'cover' }}
-                        className={i === image ? 'border border-info' : ''}
+                        className={i === image ? 'border border-0 cursor' : ''}
                         onClick={() => setImage(i)}
                       />
                     ))
@@ -116,9 +117,9 @@ function MotorCycleDetails() {
             </div>
           </div>
 
-          <div className="col-lg-12 w-100 d-flex justify-content-center">
-            <h4 className="mt-3 logo">{data?.title}</h4>
-            <div className="mt-2 wrap">{data?.description}</div>
+          <div className="col-lg-12 w-100 d-flex justify-content-evenly mt-3 mb-2">
+            <h4 className="mt-3 fs-2 text-uppercase fw-bolder m-3" style={{ fontFamily: "'Rubik', sans-serif" }}>{data?.title}</h4>
+            <div className="mt-2 wrap fw-bolder text-secondary" style={{ fontFamily: "'Rubik', sans-serif" }}>{data?.description}</div>
           </div>
           <AddReservation
             cycle={data}

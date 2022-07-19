@@ -10,6 +10,7 @@ import { cancelReservation, fetchReservationsAsync } from '../../Redux/actions/r
 import responsive from '../../utils/responsive';
 import AllContainer from '../Shared/AllContainer';
 import AddReservation from './AddReservation';
+import './styles/index.css';
 
 function MyReservations() {
   const { currentUser, loading: userLoading, token } = useSelector((state) => state.account);
@@ -54,41 +55,41 @@ function MyReservations() {
       error={error}
       data={myReservations}
     >
-      <div className="d-flex align-items-center justify-content-center w-100" style={{ minHeight: '100vh' }}>
+      <div className="d-flex table-cont justify-content-center w-100" style={{ minHeight: '' }}>
         <Table bordered>
           <thead>
             <tr>
-              <th>index</th>
-              <th>Motorcycle title</th>
-              <th>Motorcycle Model</th>
-              <th>Cylinder and acceleration</th>
-              <th>Price</th>
-              <th>Images</th>
-              <th>Reserved at</th>
-              <th>Contact Phone</th>
-              <th style={{ textAlign: 'right' }}>Actions</th>
+              <th></th>
+              <th class="text-uppercase fw-bolder text-center">Motorcycle title</th>
+              <th class="text-uppercase fw-bolder text-center">Motorcycle Model</th>
+              <th class="text-uppercase fw-bolder text-center">Cylinder and acceleration</th>
+              <th class="text-uppercase fw-bolder text-center">Price</th>
+              <th class="text-uppercase fw-bolder text-center">Images</th>
+              <th class="text-uppercase fw-bolder text-center">Reserved at</th>
+              <th class="text-uppercase fw-bolder text-center">Contact Phone</th>
+              <th class="text-uppercase fw-bolder text-center" style={{ textAlign: 'right' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {
             myReservations.map((reserve, index) => (
               <tr key={reserve?.id}>
-                <td className="align-middle">{index + 1}</td>
-                <td className="align-middle">
+                <td className="align-middle fw-bolder">{index + 1}</td>
+                <td className="align-middle fw-bolder text-uppercase">
                   {
                     selectMotorcycle(reserve?.motorcycle_id)?.title
                 }
                 </td>
-                <td className="align-middle">dsf</td>
-                <td className="align-middle">
+                <td className="align-middle fw-bolder">dsf</td>
+                <td className="align-middle fw-bolder">
                   <p className="mb-0">
                     {2}
                     {' '}
                     cylinders
                   </p>
-                  <p className="mb-0">acceleration</p>
+                  <p className="mb-0 fw-bolder">acceleration</p>
                 </td>
-                <td className="align-middle">fds</td>
+                <td className="align-middle fw-bolder">fds</td>
                 <td className="align-middle" style={{ maxWidth: 250 }}>
                   <Carousel autoPlay responsive={responsive([1, 1, 1])}>
                     { selectMotorcycle(reserve?.motorcycle_id)
@@ -105,20 +106,20 @@ function MyReservations() {
 
                   </Carousel>
                 </td>
-                <td className="align-middle">
+                <td className="align-middle fw-bolder">
                   {' '}
                   {
                     new Date(reserve.created_at).toUTCString()
                 }
 
                 </td>
-                <td className="align-middle">
+                <td className="align-middle fw-bolder">
                   {reserve.phone ? reserve.phone : 'No phone dropped please drop your phone'}
                 </td>
                 <td className="align-middle" style={{ textAlign: 'right' }}>
                   <Button
                     variant="outline-danger"
-                    className="mb-3"
+                    className="mb-3 fw-bolder"
                     onClick={() => editReservation(reserve,
                       selectMotorcycle(reserve?.motorcycle_id))}
                   >
@@ -127,7 +128,7 @@ function MyReservations() {
                   </Button>
                   <Button variant="outline-danger" onClick={() => CancelReservation(reserve?.id)}>
                     <FontAwesomeIcon ico={faTrash} className="mr-10" />
-                    Cancel
+                    <span class="fw-bolder" >Cancel</span>
                   </Button>
                 </td>
               </tr>
