@@ -4,8 +4,7 @@ import { Card } from 'react-bootstrap';
 import getRandomNumberBetween from '../../utils/utils';
 import {
   faFacebook,
-  faInstagram,
-  faPinterest,
+  faGoogle,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -34,10 +33,16 @@ function HomeCard({ cycle }) {
         {cycle?.title}
       </Card.Title>
       <p class="fw-bolder space text-center mt-2 mb-3">---------------</p>
-      <p className="text-center mb-5 fw-bolder" style={{ fontFamily: "'Rubik', sans-serif", fontSize: '14px', color: '#d3d3d3' }}>{cycle?.description.slice(0, 50)}</p>
-      <div class="mb-5">
+      <p className="text-center mb-3 fw-bolder" style={{ fontFamily: "'Rubik', sans-serif", fontSize: '14px', color: '#d3d3d3' }}>{cycle?.description.slice(0, 50)}</p>
+      <div class="mb-5 text-center justify-content-evenly d-flex align-items-center">
         <div>
-          
+          <FontAwesomeIcon icon={faFacebook} className="fa-2x mr-3" style={{ color: '#d3d3d3' }} />
+        </div>
+        <div>
+          <FontAwesomeIcon icon={faTwitter} className="fa-2x mr-3" style={{ color: '#d3d3d3' }} />
+        </div>
+        <div>
+          <FontAwesomeIcon icon={faGoogle} className="fa-2x mr-3" style={{ color: '#d3d3d3' }} />
         </div>
       </div>
 
