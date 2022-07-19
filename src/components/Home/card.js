@@ -2,19 +2,27 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import getRandomNumberBetween from '../../utils/utils';
+import {
+  faFacebook,
+  faInstagram,
+  faPinterest,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './styles/index.css';
 
 const bg = ['bg-info', 'bg-secondary', 'bg-warning'];
 function HomeCard({ cycle }) {
   return (
-    <Card className="border-0 bg-transparent rounded w-100 mt-5" style={{ height: '700px' }}>
+    <Card className="border-0 bg-transparent rounded w-75 mt-5" style={{ height: '700px' }}>
       <div
         className={`d-flex align-items-center justify-content-center rounded-circle w-100 ${bg[getRandomNumberBetween(3)]}`}
         style={{ height: '400px' }}
       >
         <Card.Img
-          className="rounded-circle w-100"
+          className="rounded-circle mx-auto d-block w-75 home-show-image"
           src={cycle?.images[getRandomNumberBetween(cycle?.images.length)]}
-          style={{ height: '400px', objectFit: 'cover', opacity: 2 }}
+          style={{ height: '300px', objectFit: 'cover', opacity: 2 }}
         />
       </div>
       <Card.Title
@@ -25,8 +33,13 @@ function HomeCard({ cycle }) {
       >
         {cycle?.title}
       </Card.Title>
-      <hr style={{ borderTop: '0.5px dashed #eee' }} />
-      <p className="text-center mb-5 text-secondary fw-bolder" style={{ fontFamily: "'Rubik', sans-serif", fontSize: '14px' }}>{cycle?.description.slice(0, 50)}</p>
+      <p class="fw-bolder space text-center mt-2 mb-3">---------------</p>
+      <p className="text-center mb-5 fw-bolder" style={{ fontFamily: "'Rubik', sans-serif", fontSize: '14px', color: '#d3d3d3' }}>{cycle?.description.slice(0, 50)}</p>
+      <div class="mb-5">
+        <div>
+          
+        </div>
+      </div>
 
     </Card>
   );
