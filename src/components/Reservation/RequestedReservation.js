@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import { fetchMotorCyclesAsync } from '../../Redux/actions/motorcycle';
 import { fetchReservationsAsync } from '../../Redux/actions/reservation';
-import { removeDuplicates } from '../../utils/utils';
+import { DoNothing, removeDuplicates } from '../../utils/utils';
 import responsive from '../../utils/responsive';
 import AllContainer from '../Shared/AllContainer';
+import { fetchUsersAsync } from '../../Redux/actions/users';
+import UserTemplate from '../Shared/UserTemplate';
 
 function RequestedReservation() {
-  const { currentUser, loading: userLoading, token } = useSelector((state) => state.account);
+  const { currentUser } = useSelector((state) => state.account);
+  const { data: users, loading: UsersLoading } = useSelector((state) => state.users);
   const { data, loading, error } = useSelector((state) => state.reservations);
   const {
     data: motorcycles,
@@ -21,22 +24,27 @@ function RequestedReservation() {
   useEffect(() => {
     if (!data.length) { dispatch(fetchReservationsAsync()); }
     if (!motorcycles.length) { dispatch(fetchMotorCyclesAsync()); }
+    dispatch(fetchUsersAsync());
   }, []);
+  const setReservationData = () => {
+    const postedMotorCycle = motorcycles.filter((m) => m.user_id === currentUser?.id);
+    const reserve = postedMotorCycle.map((motorcycle) => data.find(
+      (r) => r.motorcycle_id === motorcycle?.id,
+    ));
+    const Reserve = [];
+    reserve.forEach((r) => (r ? Reserve.push(r) : DoNothing()));
+    setReservations(removeDuplicates(Reserve, 'id').reverse());
+  };
   useEffect(() => {
-    const postedMototrCycle = motorcycles.find((m) => m.user_id == currentUser?.id);
-    const reserve = [];
-    postedMototrCycle.forEach((motorcycle) => {
-      const Reserve = data.find((r) => r.motorcycle_id == motorcycle?.id);
-      if (Reserve) { reserve.push[Reserve]; }
-    });
-    setReservations(removeDuplicates(reserve, 'id'));
-  }, [motorcycles, data]);
+    setReservationData();
+  }, [motorcycles, data, currentUser]);
   const selectMotorcycle = (id) => motorcycles.find((motorcycle) => motorcycle?.id === id);
+  const selectUser = (id) => users.find((user) => user?.id === id);
 
   return (
     <AllContainer
       auth
-      loading={loading && motorCycleLoading}
+      loading={loading && motorCycleLoading && UsersLoading}
       error={error}
       data={myReservations}
     >
@@ -51,7 +59,7 @@ function RequestedReservation() {
               <th className="text-uppercase fw-bolder text-center">Price</th>
               <th className="text-uppercase fw-bolder text-center">Images</th>
               <th className="text-uppercase fw-bolder text-center">Reserved at</th>
-              <th className="text-uppercase fw-bolder text-center">user email and phone</th>
+              <th className="text-uppercase fw-bolder text-center">Requested by</th>
             </tr>
           </thead>
           <tbody>
@@ -75,7 +83,11 @@ function RequestedReservation() {
                   <p className="mb-0 fw-bolder">{selectMotorcycle(reserve?.motorcycle_id)?.acceleration}</p>
 
                 </td>
-                <td className="align-middle">
+
+                <td className="align-middle fw-bolder">
+                  {selectMotorcycle(reserve?.motorcycle_id)?.price}
+                </td>
+                <td className="align-middle" style={{ maxWidth: 250 }}>
                   <Carousel autoPlay responsive={responsive([1, 1, 1])}>
                     { selectMotorcycle(reserve?.motorcycle_id)
                       ? selectMotorcycle(reserve?.motorcycle_id)
@@ -97,7 +109,8 @@ function RequestedReservation() {
                 }
                 </td>
                 <td className="align-middle">
-                  {reserve.phone ? reserve.phone : 'No phone dropped please drop your phone'}
+                  <UserTemplate user={selectUser(reserve?.user_id)} />
+                  {reserve.phone ? `Phone ${reserve.phone}` : 'No phone dropped please'}
                 </td>
               </tr>
             ))

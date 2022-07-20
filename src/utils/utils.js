@@ -4,6 +4,7 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 const getRandomNumberBetween = (num) => Math.floor(Math.random() * num);
+export const DoNothing = () => {};
 export const removeDuplicates = (originalArray, prop) => {
   const newArray = [];
   const lookupObject = {};
