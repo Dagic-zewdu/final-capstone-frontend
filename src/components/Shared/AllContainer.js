@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import AuthorizeUser from '../Auth';
 import Navigation from '../Navigation';
-import HomeCardSkeleton from '../Skeleton/HomeCardSkeleton';
 import ErrorContainer from './ErrorContainer';
 import LoadingContainer from './LoadingContainer';
 
