@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import httpCommon from '../../api';
-import { showErrorToast, showsInfoToast, showSuccessToast } from '../../shared/toast';
+import { showSuccessToast, showErrorToast, showsInfoToast } from '../../utils/toasts';
 import motorActionTypes from '../types/motorcyles';
 
 export const fetchMotorcyclesStart = () => ({

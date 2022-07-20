@@ -1,5 +1,5 @@
 import httpCommon from '../../api';
-import { showSuccessToast, showErrorToast } from '../../shared/toast';
+import { showSuccessToast, showErrorToast } from '../../utils/toasts';
 import usersActions from '../types/users';
 
 export const fetchAccountStart = () => ({
