@@ -68,7 +68,7 @@ export const addMotorcycleAsync = (user, token, toast) => async (dispatch) => {
 export const editMotorcycle = (id, motorcycle, token, toast) => async (dispatch) => {
   try {
     showsInfoToast('Updating....', toast);
-    await httpCommon(token).put('/motorcycle', motorcycle);
+    await httpCommon(token).put(`/motorcycle/${id}`, motorcycle);
     showSuccessToast('Bicycle updated successfully', toast);
     dispatch(fetchMotorCyclesAsync());
     dispatch(fetchMotorCycleAsync(id));
@@ -78,11 +78,12 @@ export const editMotorcycle = (id, motorcycle, token, toast) => async (dispatch)
   }
 };
 
-export const deleteMotorcycle = (id, token, toast) => async (dispatch) => {
+export const deleteMotorcycle = (id, token, toast, navigate) => async (dispatch) => {
   try {
     showsInfoToast('Deleting....', toast);
-    await httpCommon(token).delete(`/motorcycle${id}`);
+    await httpCommon(token).delete(`/motorcycle/${id}`);
     showSuccessToast('Deleted successfully', toast);
+    navigate('/motorcycles');
     dispatch(fetchMotorCyclesAsync());
     dispatch(fetchMotorCycleAsync(id));
   } catch (err) {
