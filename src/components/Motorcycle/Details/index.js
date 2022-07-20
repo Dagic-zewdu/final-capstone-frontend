@@ -145,10 +145,10 @@ function MotorCycleDetails() {
               isCreator
                 ? (
                   <div className="d-flex align-items-center justify-content-around">
-                    <Button variant="outline-info" className="w-50">
+                    <Button variant="outline-info" className="">
                       Edit
                     </Button>
-                    <Button variant="outline-danger" className="w-50">
+                    <Button variant="outline-danger" className="">
                       Delete
                     </Button>
                   </div>

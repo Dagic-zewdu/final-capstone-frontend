@@ -27,18 +27,6 @@ export const fetchMotorCyclesAsync = () => async (dispatch) => {
   }
 };
 
-export const addMotorcycleAsync = (user, token, toast) => async (dispatch) => {
-  try {
-    showsInfoToast('Saving....', toast);
-    await httpCommon(token).post('/motorcycle', user);
-    showSuccessToast('Bicycle added successfully', toast);
-    dispatch(fetchMotorCyclesAsync());
-  } catch (err) {
-    console.log(err);
-    showErrorToast(err, toast);
-  }
-};
-
 /* individual motorcycle */
 
 export const fetchMotorcycleStart = () => ({
@@ -62,5 +50,43 @@ export const fetchMotorCycleAsync = (id) => async (dispatch) => {
     dispatch(fetchMotorcycleSuccess(res?.data));
   } catch (err) {
     dispatch(fetchMotorcycleError(err?.message));
+  }
+};
+
+export const addMotorcycleAsync = (user, token, toast) => async (dispatch) => {
+  try {
+    showsInfoToast('Saving....', toast);
+    await httpCommon(token).post('/motorcycle', user);
+    showSuccessToast('Bicycle added successfully', toast);
+    dispatch(fetchMotorCyclesAsync());
+  } catch (err) {
+    console.log(err);
+    showErrorToast(err, toast);
+  }
+};
+
+export const editMotorcycle = (id, motorcycle, token, toast) => async (dispatch) => {
+  try {
+    showsInfoToast('Updating....', toast);
+    await httpCommon(token).put('/motorcycle', motorcycle);
+    showSuccessToast('Bicycle updated successfully', toast);
+    dispatch(fetchMotorCyclesAsync());
+    dispatch(fetchMotorCycleAsync(id));
+  } catch (err) {
+    console.log(err);
+    showErrorToast(err, toast);
+  }
+};
+
+export const deleteMotorcycle = (id, token, toast) => async (dispatch) => {
+  try {
+    showsInfoToast('Deleting....', toast);
+    await httpCommon(token).delete(`/motorcycle${id}`);
+    showSuccessToast('Deleted successfully', toast);
+    dispatch(fetchMotorCyclesAsync());
+    dispatch(fetchMotorCycleAsync(id));
+  } catch (err) {
+    console.log(err);
+    showErrorToast(err, toast);
   }
 };
