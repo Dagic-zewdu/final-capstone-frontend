@@ -13,15 +13,15 @@ import './styles/index.css';
 const bg = [];
 function HomeCard({ cycle }) {
   return (
-    <Card className="border-0 bg-transparent rounded w-75 mt-5" style={{ height: '700px' }}>
+    <Card className="border-0 bg-transparent rounded w-100 mt-5" style={{ height: '700px' }}>
       <div
         className={`d-flex align-items-center justify-content-center rounded-circle w-100 ${bg[getRandomNumberBetween(3)]}`}
         style={{ height: '400px' }}
       >
         <Card.Img
-          className="rounded-circle mx-auto d-block w-75 home-show-image"
+          className="rounded-circle mx-auto d-block w-100 home-show-image"
           src={cycle?.images[getRandomNumberBetween(cycle?.images.length)]}
-          style={{ height: '300px', objectFit: 'cover', opacity: 2 }}
+          style={{ height: '400px', objectFit: 'cover', opacity: 2 }}
         />
       </div>
       <Card.Title
