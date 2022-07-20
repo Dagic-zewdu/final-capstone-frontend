@@ -16,12 +16,12 @@ function HomeCard({ cycle }) {
     <Card className="border-0 bg-transparent rounded w-100 mt-5" style={{ height: '700px' }}>
       <div
         className={`d-flex align-items-center justify-content-center rounded-circle w-100 ${bg[getRandomNumberBetween(3)]}`}
-        style={{ height: '400px' }}
+        style={{ height: '380px' }}
       >
         <Card.Img
           className="rounded-circle mx-auto d-block w-100 home-show-image"
           src={cycle?.images[getRandomNumberBetween(cycle?.images.length)]}
-          style={{ height: '400px', objectFit: 'cover', opacity: 2 }}
+          style={{ height: '380px', objectFit: 'cover', opacity: 2 }}
         />
       </div>
       <Card.Title
