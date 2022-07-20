@@ -1,3 +1,7 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-alert */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import {
@@ -5,10 +9,12 @@ import {
 } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import {
+  Link, useNavigate, useParams,
+} from 'react-router-dom';
 import ReactTimeAgo from 'react-time-ago';
 import { useToasts } from 'react-toast-notifications';
-import { fetchMotorCycleAsync } from '../../../Redux/actions/motorcycle';
+import { deleteMotorcycle, fetchMotorCycleAsync } from '../../../Redux/actions/motorcycle';
 import { cancelReservation, fetchReservationsAsync } from '../../../Redux/actions/reservation';
 import responsive from '../../../utils/responsive';
 import AddReservation from '../../Reservation/AddReservation';
@@ -18,6 +24,7 @@ import '../styles/index.css';
 
 function MotorCycleDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const {
     data, loading, error, createdBy, reservations,
   } = useSelector((state) => state.motorcycles?.motorcycle);
@@ -42,15 +49,20 @@ function MotorCycleDetails() {
   const [image, setImage] = useState(data?.images[0]);
   useEffect(() => setImage(data?.images[0]), [data?.images]);
   useEffect(() => {
-    const reserved = Reservations.find((r) => (r?.user_id.toString() === currentUser?.id.toString())
-    && (r.motorcycle_id.toString() === id.toString()));
+    const reserved = Reservations.find((r) => (r?.user_id == currentUser?.id.toString())
+    && (r.motorcycle_id == id));
     setReserved(reserved);
   }, [Reservations, data]);
   useEffect(() => {
     if (data?.user_id === currentUser?.id) { setCreator(true); }
   }, [data, currentUser]);
+  const DeleteMotorcycle = () => {
+    if (confirm('Are you sure you want to delete this motorcycle?. All reservations are also canceled')) {
+      dispatch(deleteMotorcycle(id, token, addToast, navigate));
+    }
+  };
   return (
-    <AllContainer navigation={false} loading={loading && reservationLoading} error={error} data={['1']}>
+    <AllContainer navigation={false} loading={loading && reservationLoading} error={error} data={data ? ['1'] : []}>
       <div className="container">
         <div className="row">
           <div className="col-lg-9">
@@ -145,10 +157,14 @@ function MotorCycleDetails() {
               isCreator
                 ? (
                   <div className="d-flex align-items-center justify-content-around">
-                    <Button variant="outline-info" className="">
+                    <Button
+                      variant="outline-info"
+                      className=""
+                      onClick={() => navigate(`/addmotorcycle/${id}`)}
+                    >
                       Edit
                     </Button>
-                    <Button variant="outline-danger" className="">
+                    <Button variant="outline-danger" className="" onClick={() => DeleteMotorcycle()}>
                       Delete
                     </Button>
                   </div>
