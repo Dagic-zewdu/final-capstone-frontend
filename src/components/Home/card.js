@@ -10,7 +10,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './styles/index.css';
 
-const bg = ['bg-info', 'bg-secondary', 'bg-warning'];
+const bg = [];
 function HomeCard({ cycle }) {
   return (
     <Card className="border-0 bg-transparent rounded w-75 mt-5" style={{ height: '700px' }}>
