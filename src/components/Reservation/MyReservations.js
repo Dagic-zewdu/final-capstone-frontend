@@ -59,7 +59,7 @@ function MyReservations() {
         <Table bordered>
           <thead>
             <tr>
-            <th className="text-uppercase fw-bolder text-center">Index</th>
+              <th className="text-uppercase fw-bolder text-center">Index</th>
               <th className="text-uppercase fw-bolder text-center">Motorcycle title</th>
               <th className="text-uppercase fw-bolder text-center">Motorcycle Model</th>
               <th className="text-uppercase fw-bolder text-center">Cylinder and acceleration</th>
