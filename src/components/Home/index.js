@@ -19,6 +19,8 @@ function Home() {
     <AllContainer data={data} loading={loading} error={error} loadingType="homePage">
       <div className="container m-3 bg-transparent h-100 d-flex align-items-center flex-column justify-content-center w-100">
         <h2 className="display-2 text-uppercase mb-4" style={{ fontFamily: "'Passion One', cursive", letterSpacing: '5px', fontSize: '40px' }}>Latest models</h2>
+        <p className="fw-bolder fs-5 select-title">Please select a model</p>
+        <p className="fw-bolder space  mt-2 mb-3">---------------</p>
         <Carousel
           autoPlay
           className="w-100"

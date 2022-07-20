@@ -52,9 +52,9 @@ function AddReservation({
       >
         X
       </Button>
-      <div className="overlay-content">
+      <div className="overlay-content container">
         <h5 className="title fw-bolder mt-2">{cycle?.title}</h5>
-        <h4 className="mt-3 desc fw-bolder mt-2">{cycle?.description}</h4>
+        <h4 className="mt-3 desc mt-2">{cycle?.description}</h4>
         <form onSubmit={handleSubmit} className="form-cont">
           <div className="d-flex align-items-center justify-content-between w-100">
             <FloatingLabel

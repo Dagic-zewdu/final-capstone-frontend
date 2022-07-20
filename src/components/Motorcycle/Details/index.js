@@ -23,6 +23,7 @@ function MotorCycleDetails() {
   } = useSelector((state) => state.motorcycles?.motorcycle);
   const { currentUser, loading: userLoading, token } = useSelector((state) => state.account);
   const [reserved, setReserved] = useState(false);
+  const [isCreator, setCreator] = useState(false);
   const {
     data: Reservations,
     loading: reservationLoading,
@@ -45,6 +46,9 @@ function MotorCycleDetails() {
     && (r.motorcycle_id.toString() === id.toString()));
     setReserved(reserved);
   }, [Reservations, data]);
+  useEffect(() => {
+    if (data?.user_id === currentUser?.id) { setCreator(true); }
+  }, [data, currentUser]);
   return (
     <AllContainer navigation={false} loading={loading && reservationLoading} error={error} data={['1']}>
       <div className="container">
@@ -136,6 +140,20 @@ function MotorCycleDetails() {
 
                         </Button>
                       ) : ''
+            }
+              {
+              isCreator
+                ? (
+                  <div className="d-flex align-items-center justify-content-around">
+                    <Button variant="outline-info" className="w-50">
+                      Edit
+                    </Button>
+                    <Button variant="outline-danger" className="w-50">
+                      Delete
+                    </Button>
+                  </div>
+                )
+                : ''
             }
               <div className="mt-3 w-100">
                 <Carousel
