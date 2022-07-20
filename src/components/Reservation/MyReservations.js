@@ -55,10 +55,11 @@ function MyReservations() {
       error={error}
       data={myReservations}
     >
-      <div className="d-flex table-cont justify-content-center w-100" style={{ minHeight: '' }}>
+      <div className="d-flex table-cont justify-content-center w-100" style={{ minHeight: '100vh' }}>
         <Table bordered>
           <thead>
             <tr>
+              <th className="text-uppercase fw-bolder text-center">index</th>
               <th className="text-uppercase fw-bolder text-center">Motorcycle title</th>
               <th className="text-uppercase fw-bolder text-center">Motorcycle Model</th>
               <th className="text-uppercase fw-bolder text-center">Cylinder and acceleration</th>
@@ -79,16 +80,22 @@ function MyReservations() {
                     selectMotorcycle(reserve?.motorcycle_id)?.title
                 }
                 </td>
-                <td className="align-middle fw-bolder">dsf</td>
+                <td className="align-middle fw-bolder">
+                  {
+                    selectMotorcycle(reserve?.motorcycle_id)?.model
+                  }
+                </td>
                 <td className="align-middle fw-bolder">
                   <p className="mb-0">
-                    {2}
+                    {selectMotorcycle(reserve?.motorcycle_id)?.cylinder}
                     {' '}
                     cylinders
                   </p>
-                  <p className="mb-0 fw-bolder">acceleration</p>
+                  <p className="mb-0 fw-bolder">{selectMotorcycle(reserve?.motorcycle_id)?.acceleration}</p>
                 </td>
-                <td className="align-middle fw-bolder">fds</td>
+                <td className="align-middle fw-bolder">
+                  {selectMotorcycle(reserve?.motorcycle_id)?.price}
+                </td>
                 <td className="align-middle" style={{ maxWidth: 250 }}>
                   <Carousel autoPlay responsive={responsive([1, 1, 1])}>
                     { selectMotorcycle(reserve?.motorcycle_id)
