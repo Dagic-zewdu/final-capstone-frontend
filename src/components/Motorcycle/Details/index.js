@@ -41,11 +41,10 @@ function MotorCycleDetails() {
   const [image, setImage] = useState(data?.images[0]);
   useEffect(() => setImage(data?.images[0]), [data?.images]);
   useEffect(() => {
-    const reserved = Reservations.find((r) => (r.user_id == currentUser.id)
-    && (r.motorcycle_id == id));
+    const reserved = Reservations.find((r) => (r?.user_id.toString() === currentUser?.id.toString())
+    && (r.motorcycle_id.toString() === id.toString()));
     setReserved(reserved);
   }, [Reservations, data]);
-  console.log(reserved);
   return (
     <AllContainer navigation={false} loading={loading && reservationLoading} error={error} data={['1']}>
       <div className="container">
