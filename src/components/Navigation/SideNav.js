@@ -19,7 +19,7 @@ function SideNav() {
           <NavLink to="/motorcycles" exact activeClassName="active">MOTORCYCLES</NavLink>
           <NavLink to="/myreservations" activeClassName="active">MY RESERVATIONS</NavLink>
           <NavLink to="/addmotorcycle" activeClassName="active">ADD MOTORCYCLE</NavLink>
-          <NavLink to="/requested" activeClassName="active">REQ. RESERVATIONS</NavLink>
+          <NavLink to="/requested_reservations" activeClassName="active">REQUESTED RESERVATIONS</NavLink>
         </div>
       </div>
       <div className="d-flex flex-column align-items-center justify-content-center">

@@ -5,6 +5,7 @@ import Motorcycles from '../components/Motorcycle';
 import AddMotorCycle from '../components/Motorcycle/AddForm';
 import MotorCycleDetails from '../components/Motorcycle/Details';
 import MyReservations from '../components/Reservation/MyReservations';
+import RequestedReservation from '../components/Reservation/RequestedReservation';
 
 function Router() {
   return (
@@ -14,6 +15,8 @@ function Router() {
       <Route path="/addmotorcycle" element={<AddMotorCycle />} />
       <Route path="/motorcycles" element={<Motorcycles />} />
       <Route path="/myreservations" element={<MyReservations />} />
+      <Route path="/requested_reservations" element={<RequestedReservation />} />
+
     </Routes>
   );
 }

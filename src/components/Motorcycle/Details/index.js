@@ -6,7 +6,10 @@ import {
 import Carousel from 'react-multi-carousel';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import ReactTimeAgo from 'react-time-ago';
+import { useToasts } from 'react-toast-notifications';
 import { fetchMotorCycleAsync } from '../../../Redux/actions/motorcycle';
+import { cancelReservation, fetchReservationsAsync } from '../../../Redux/actions/reservation';
 import responsive from '../../../utils/responsive';
 import AddReservation from '../../Reservation/AddReservation';
 import AllContainer from '../../Shared/AllContainer';
@@ -18,20 +21,36 @@ function MotorCycleDetails() {
   const {
     data, loading, error, createdBy, reservations,
   } = useSelector((state) => state.motorcycles?.motorcycle);
-  const { currentUser, loading: userLoading } = useSelector((state) => state.account);
-
+  const { currentUser, loading: userLoading, token } = useSelector((state) => state.account);
+  const [reserved, setReserved] = useState(false);
+  const [isCreator, setCreator] = useState(false);
+  const {
+    data: Reservations,
+    loading: reservationLoading,
+  } = useSelector((state) => state.reservations);
   const dispatch = useDispatch();
+  const { addToast } = useToasts();
   const [show, showReservation] = useState(false);
   useEffect(() => {
     if (data?.id !== id) {
       dispatch(fetchMotorCycleAsync(id));
     }
   }, [id]);
+  useEffect(() => {
+    if (!Reservations.length) { dispatch(fetchReservationsAsync()); }
+  }, []);
   const [image, setImage] = useState(data?.images[0]);
   useEffect(() => setImage(data?.images[0]), [data?.images]);
-
+  useEffect(() => {
+    const reserved = Reservations.find((r) => (r?.user_id.toString() === currentUser?.id.toString())
+    && (r.motorcycle_id.toString() === id.toString()));
+    setReserved(reserved);
+  }, [Reservations, data]);
+  useEffect(() => {
+    if (data?.user_id === currentUser?.id) { setCreator(true); }
+  }, [data, currentUser]);
   return (
-    <AllContainer navigation={false} loading={loading} error={error} data={['1']}>
+    <AllContainer navigation={false} loading={loading && reservationLoading} error={error} data={['1']}>
       <div className="container">
         <div className="row">
           <div className="col-lg-9">
@@ -48,6 +67,13 @@ function MotorCycleDetails() {
               <div className="d flex flex-column justify-content-start" style={{ fontFamily: "'Rubik', sans-serif" }}>
                 <p className="info fw-bolder">Posted By</p>
                 <UserTemplate user={createdBy} />
+                <p>
+                  {' '}
+                  { new Date(data?.created_at).toUTCString().slice(0, 16)}
+                </p>
+                <p>
+                  <ReactTimeAgo date={data?.created_at} locale="en-US" />
+                </p>
               </div>
               <Table bordered>
                 <thead>
@@ -87,12 +113,47 @@ function MotorCycleDetails() {
                 userLoading
                   ? <Spinner animation="grow" />
                   : createdBy?.id !== currentUser?.id
-                    ? (
-                      <Button variant="outline-primary" class="border rounded-pill" style={{ fontFamily: "'Rubik', sans-serif" }} onClick={() => showReservation(true)}>
-                        <h4 className="fw-bolder fs-5 p-1">+ Reserve</h4>
+                    ? reserved
+                      ? (
+                        <div className="">
+                          <p>
+                            Reserved
+                            {' '}
+                            {' '}
+                            <ReactTimeAgo date={reserved?.created_at} locale="en-US" />
+                          </p>
+                          <Button
+                            variant="outline-primary"
+                            class="border rounded-pill"
+                            style={{ fontFamily: "'Rubik', sans-serif" }}
+                            onClick={() => dispatch(cancelReservation(reserved?.id,
+                              token, addToast))}
+                          >
+                            <h4 className="fw-bolder fs-5 p-1">&times; Cancel Reservation</h4>
 
-                      </Button>
-                    ) : ''
+                          </Button>
+                        </div>
+                      )
+                      : (
+                        <Button variant="outline-primary" class="border rounded-pill" style={{ fontFamily: "'Rubik', sans-serif" }} onClick={() => showReservation(true)}>
+                          <h4 className="fw-bolder fs-5 p-1">+ Reserve</h4>
+
+                        </Button>
+                      ) : ''
+            }
+              {
+              isCreator
+                ? (
+                  <div className="d-flex align-items-center justify-content-around">
+                    <Button variant="outline-info" className="">
+                      Edit
+                    </Button>
+                    <Button variant="outline-danger" className="">
+                      Delete
+                    </Button>
+                  </div>
+                )
+                : ''
             }
               <div className="mt-3 w-100">
                 <Carousel

@@ -19,7 +19,11 @@ function NotFound404() {
                   Look like you are lost
                 </h3>
 
-                <p>the page you are looking for not available!</p>
+                <p>
+                  the page you are looking for not available or
+                  You are not authorized to see this page please login to access this page
+
+                </p>
 
                 <Link to="/" className="link_404">Go to Home</Link>
               </div>

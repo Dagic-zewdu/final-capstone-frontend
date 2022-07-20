@@ -12,7 +12,7 @@ import config from '../../config/config';
 import {
   fetchAccountSuccess, fetchCurrentAccount, logInAsync, setToken,
 } from '../../Redux/actions/account';
-import { showSuccessToast } from '../../shared/toast';
+import { showSuccessToast } from '../../utils/toasts';
 
 function GoogleSignIn() {
   const { account } = useSelector((state) => state);

@@ -11,9 +11,9 @@ import Carousel from 'react-multi-carousel';
 import { useToasts } from 'react-toast-notifications';
 import { useDispatch, useSelector } from 'react-redux';
 import responsive from '../../../utils/responsive';
-import { showErrorToast } from '../../../shared/toast';
 import { addMotorcycleAsync } from '../../../Redux/actions/motorcycle';
 import AllContainer from '../../Shared/AllContainer';
+import { showErrorToast } from '../../../utils/toasts';
 
 function AddMotorCycle() {
   const [state, setState] = useState({
