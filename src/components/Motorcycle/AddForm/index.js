@@ -31,6 +31,22 @@ function AddMotorCycle() {
     cylinder: '',
     acceleration: '',
   });
+  useEffect(() => {
+    if (!params?.id) {
+      setState({
+        model: '', // required
+        price: 0, // required
+        title: '', // required
+        images: [], // required at leat one image
+        duration: '', // required
+        discount: 0, // optional
+        description: '',
+        image: '',
+        cylinder: '',
+        acceleration: '',
+      });
+    }
+  }, [params]);
   const { addToast } = useToasts();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.account);
