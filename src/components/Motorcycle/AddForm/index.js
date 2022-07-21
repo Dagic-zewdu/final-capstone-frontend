@@ -33,7 +33,6 @@ function AddMotorCycle() {
   });
   useEffect(() => {
     if (params.id === undefined || params.id === 'undefined') {
-      console.log(params?.id);
       setState({
         model: '', // required
         price: 0, // required
