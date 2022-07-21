@@ -12,6 +12,7 @@ function Router() {
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route path="/motorcycle/:id" element={<MotorCycleDetails />} />
+      <Route path="/addmotorcycle/:id" element={<AddMotorCycle />} />
       <Route path="/addmotorcycle" element={<AddMotorCycle />} />
       <Route path="/motorcycles" element={<Motorcycles />} />
       <Route path="/myreservations" element={<MyReservations />} />

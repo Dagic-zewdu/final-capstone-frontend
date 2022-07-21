@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { faMotorcycle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import '../styles/index.css';
 // eslint-disable-next-line import/order
@@ -10,12 +11,14 @@ import { generate } from 'randomized-string';
 import Carousel from 'react-multi-carousel';
 import { useToasts } from 'react-toast-notifications';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import responsive from '../../../utils/responsive';
-import { addMotorcycleAsync } from '../../../Redux/actions/motorcycle';
+import { addMotorcycleAsync, editMotorcycle, fetchMotorCycleAsync } from '../../../Redux/actions/motorcycle';
 import AllContainer from '../../Shared/AllContainer';
 import { showErrorToast } from '../../../utils/toasts';
 
 function AddMotorCycle() {
+  const params = useParams();
   const [state, setState] = useState({
     model: '', // required
     price: 0, // required
@@ -28,6 +31,22 @@ function AddMotorCycle() {
     cylinder: '',
     acceleration: '',
   });
+  useEffect(() => {
+    if (params.id === undefined || params.id === 'undefined') {
+      setState({
+        model: '', // required
+        price: 0, // required
+        title: '', // required
+        images: [], // required at leat one image
+        duration: '', // required
+        discount: 0, // optional
+        description: '',
+        image: '',
+        cylinder: '',
+        acceleration: '',
+      });
+    }
+  }, [params?.id]);
   const { addToast } = useToasts();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.account);
@@ -51,13 +70,27 @@ function AddMotorCycle() {
           cycle = { ...cycle, images: state.images.map(({ image }) => (image)) };
         } else if (key !== 'image') { cycle = { ...cycle, [key]: state[key] }; }
       });
-      dispatch(addMotorcycleAsync(cycle, token, addToast));
+      if (!params?.id) { dispatch(addMotorcycleAsync(cycle, token, addToast)); } else {
+        dispatch(editMotorcycle(params?.id, cycle, token, addToast));
+      }
     } else {
       showErrorToast('Please add at least one image link', addToast);
       ref.current.focus();
     }
   };
-
+  const { data } = useSelector((state) => state.motorcycles?.motorcycle);
+  useEffect(() => {
+    if (params?.id) dispatch(fetchMotorCycleAsync(params?.id));
+  }, [params]);
+  useEffect(() => {
+    if (data && params.id) {
+      setState((s) => ({
+        ...s,
+        ...data,
+        images: data?.images.map((image) => ({ id: generate(), image })),
+      }));
+    }
+  }, [data, params]);
   return (
     <AllContainer auth data={['s']}>
       <div className="container">
@@ -69,7 +102,8 @@ function AddMotorCycle() {
                 <div className="d-flex justify-content-between align-items-center">
                   <h1 className="viral">
                     {' '}
-                    Add Motorcycle
+                    {params.id
+                      ? 'Edit Motorcycle' : 'Add Motorcycle'}
                   </h1>
                   <FontAwesomeIcon icon={faMotorcycle} style={{ marginRight: 10, color: 'rgb(158, 206, 63)', fontSize: '45px' }} />
                 </div>
@@ -79,7 +113,7 @@ function AddMotorCycle() {
                   className="mb-3 mt-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
-                  <Form.Control type="text" onChange={handleChange} required id="model" placeholder="Model" />
+                  <Form.Control type="text" value={state.model} onChange={handleChange} required id="model" placeholder="Model" />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
@@ -87,7 +121,14 @@ function AddMotorCycle() {
                   className="mb-3 mt-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
-                  <Form.Control type="number" onChange={handleChange} required id="cylinder" placeholder="Model" />
+                  <Form.Control
+                    type="number"
+                    value={state.cylinder}
+                    onChange={handleChange}
+                    required
+                    id="cylinder"
+                    placeholder="Model"
+                  />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
@@ -95,7 +136,14 @@ function AddMotorCycle() {
                   className="mb-3 mt-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
-                  <Form.Control type="text" onChange={handleChange} required id="acceleration" placeholder="Model" />
+                  <Form.Control
+                    type="text"
+                    value={state.acceleration}
+                    onChange={handleChange}
+                    required
+                    id="acceleration"
+                    placeholder="Model"
+                  />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
@@ -103,7 +151,14 @@ function AddMotorCycle() {
                   className="mb-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
-                  <Form.Control type="text" onChange={handleChange} required id="title" placeholder="Title" />
+                  <Form.Control
+                    value={state.title}
+                    type="text"
+                    onChange={handleChange}
+                    required
+                    id="title"
+                    placeholder="Title"
+                  />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
@@ -111,7 +166,14 @@ function AddMotorCycle() {
                   className="mb-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
-                  <Form.Control type="number" onChange={handleChange} required id="price" placeholder="Price" />
+                  <Form.Control
+                    type="number"
+                    value={state.price}
+                    onChange={handleChange}
+                    required
+                    id="price"
+                    placeholder="Price"
+                  />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
@@ -119,7 +181,14 @@ function AddMotorCycle() {
                   className="mb-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
-                  <Form.Control type="number" onChange={handleChange} required id="duration" placeholder="Duration" />
+                  <Form.Control
+                    type="number"
+                    value={state.duration}
+                    onChange={handleChange}
+                    required
+                    id="duration"
+                    placeholder="Duration"
+                  />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
@@ -127,12 +196,23 @@ function AddMotorCycle() {
                   className="mb-3 w-100 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
-                  <Form.Control type="number" onChange={handleChange} id="discount" placeholder="Discount" />
+                  <Form.Control
+                    type="number"
+                    value={state.discount}
+                    onChange={handleChange}
+                    id="discount"
+                    placeholder="Discount"
+                  />
                 </FloatingLabel>
-                <FloatingLabel controlId="description" label="Description" className="w-100 mb-3">
+                <FloatingLabel
+                  controlId="description"
+                  label="Description"
+                  className="w-100 mb-3"
+                >
                   <Form.Control
                     as="textarea"
                     placeholder="description"
+                    value={state.description}
                     id="description"
                     class="fw-bolder"
                     onChange={handleChange}
@@ -216,13 +296,16 @@ function AddMotorCycle() {
                  }
                   </Carousel>
                 </div>
+
                 <Button
                   variant="outline-success"
                   type="submit"
                   className="w-100 mt-4 fw-bolder"
                   style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
-                  + Add Motorcycle
+                  {params?.id
+                    ? 'Edit Motorcycle' : '+ Add Motorcycle'}
+
                 </Button>
               </div>
             </form>

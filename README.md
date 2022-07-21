@@ -59,7 +59,7 @@ The front end app will open automatically to the default browser
 
 - GitHub: [@Dagic-zewdu](https://github.com/Dagic-zewdu)
 - Twitter: [@dagic4](https://twitter.com/dagic4)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/dagi-zewdu-21b835215/)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/dagic-zewdu/)
 
 👤 **Edward Oluyara**
 
