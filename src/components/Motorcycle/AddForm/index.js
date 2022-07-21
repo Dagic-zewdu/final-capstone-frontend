@@ -31,6 +31,22 @@ function AddMotorCycle() {
     cylinder: '',
     acceleration: '',
   });
+  useEffect(() => {
+    if (params.id === undefined || params.id === 'undefined') {
+      setState({
+        model: '', // required
+        price: 0, // required
+        title: '', // required
+        images: [], // required at leat one image
+        duration: '', // required
+        discount: 0, // optional
+        description: '',
+        image: '',
+        cylinder: '',
+        acceleration: '',
+      });
+    }
+  }, [params?.id]);
   const { addToast } = useToasts();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.account);
@@ -67,7 +83,7 @@ function AddMotorCycle() {
     if (params?.id) dispatch(fetchMotorCycleAsync(params?.id));
   }, [params]);
   useEffect(() => {
-    if (data) {
+    if (data && params.id) {
       setState((s) => ({
         ...s,
         ...data,
