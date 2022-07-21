@@ -32,7 +32,8 @@ function AddMotorCycle() {
     acceleration: '',
   });
   useEffect(() => {
-    if (!params?.id) {
+    if (params.id === undefined || params.id === 'undefined') {
+      console.log(params?.id);
       setState({
         model: '', // required
         price: 0, // required
@@ -46,7 +47,7 @@ function AddMotorCycle() {
         acceleration: '',
       });
     }
-  }, [params]);
+  }, [params?.id]);
   const { addToast } = useToasts();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.account);
@@ -83,7 +84,7 @@ function AddMotorCycle() {
     if (params?.id) dispatch(fetchMotorCycleAsync(params?.id));
   }, [params]);
   useEffect(() => {
-    if (data) {
+    if (data && params.id) {
       setState((s) => ({
         ...s,
         ...data,
