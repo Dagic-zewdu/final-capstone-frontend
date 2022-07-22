@@ -53,6 +53,16 @@ yarn run start
 
 The front end app will open automatically to the default browser
 
+## Kanban board
+
+👉 [Kanban board link](https://github.com/orgs/UpliftLab/projects/3)
+
+| Initial State | Final State |
+| -------------- | -----------|
+| <img src="https://user-images.githubusercontent.com/83566118/177584682-dc1828e8-fe4c-43e6-9f10-2fec4c4f0ce3.png" alt="drawing" height="150"/> | <img src="screenshots/final-board.png" alt="drawing" height="150"/> |
+
+👉 This project was authored by <a href="#authors">two contributors</a> as described in the the Authors section bellow.
+
 ## Authors
 
 👤 **Dagic Zewdu**
