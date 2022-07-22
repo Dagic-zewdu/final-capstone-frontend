@@ -72,7 +72,7 @@ function GoogleSignIn() {
               class="m-2 fs-4 w-100"
               style={{ fontFamily: "'Rubik', sans-serif" }}
             >
-              <FontAwesomeIcon icon={faGoogle} style={{ color: 'red' }} class="fw-bolder fs-5" />
+              <FontAwesomeIcon icon={faGoogle} style={{ color: 'red' }} className="fa-2x mr-10" />
               Sign in
             </Button>
           )}
