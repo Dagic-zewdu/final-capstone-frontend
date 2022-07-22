@@ -25,7 +25,6 @@
     "react-redux": "7.2.8",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
-    "react-test-renderer": "^18.2.0",
     "react-time-ago": "^7.2.1",
     "react-toast-notifications": "^2.5.1",
     "redux": "^4.2.0",
