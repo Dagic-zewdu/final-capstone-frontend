@@ -72,14 +72,15 @@ function MotorCycleDetails() {
       <div className="container">
         <div className="row">
           <div className="col-lg-12 py-2">
-            <div className="d-flex">
+            <div className="d-flex align-items-center">
               <Button
                 variant="outline-warning"
                 aria-controls="collapse-Header"
                 aria-expanded={toggle}
                 onClick={() => setToggle((s) => (!s))}
+                className="border-less"
               >
-                <FontAwesomeIcon icon={faBars} className="fa-1x mr-10" />
+                <FontAwesomeIcon icon={faBars} className="fa-3x mr-10" />
               </Button>
               <Link to="/">
                 <h1 className="font-italic logo display-4 text-dark">Bcycom</h1>
