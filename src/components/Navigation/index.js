@@ -4,11 +4,11 @@ import Header from './Header';
 import SideNav from './SideNav';
 import './styles/index.css';
 
-function Navigation({ children }) {
+function Navigation({ children, alwaysShow = false }) {
   return (
     <>
       <SideNav />
-      <Header />
+      <Header alwaysShow={alwaysShow} />
       <div id="main">
         {children}
       </div>

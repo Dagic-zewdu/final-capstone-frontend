@@ -3,6 +3,8 @@
 /* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import {
   Button, Card, Spinner, Table,
@@ -17,6 +19,7 @@ import { useToasts } from 'react-toast-notifications';
 import { deleteMotorcycle, fetchMotorCycleAsync } from '../../../Redux/actions/motorcycle';
 import { cancelReservation, fetchReservationsAsync } from '../../../Redux/actions/reservation';
 import responsive from '../../../utils/responsive';
+import CollapseHeader from '../../Navigation/CollapseHeader';
 import AddReservation from '../../Reservation/AddReservation';
 import AllContainer from '../../Shared/AllContainer';
 import UserTemplate from '../../Shared/UserTemplate';
@@ -61,14 +64,33 @@ function MotorCycleDetails() {
       dispatch(deleteMotorcycle(id, token, addToast, navigate));
     }
   };
+  const [toggle, setToggle] = useState(false);
+
   return (
     <AllContainer navigation={false} loading={loading && reservationLoading} error={error} data={data ? ['1'] : []}>
       <div className="container">
         <div className="row">
+          <div className="col-lg-12 py-2">
+            <div className="d-flex align-items-center">
+              <Button
+                variant="outline-warning"
+                aria-controls="collapse-Header"
+                aria-expanded={toggle}
+                onClick={() => setToggle((s) => (!s))}
+                className="border-less"
+              >
+                <FontAwesomeIcon icon={faBars} className="fa-3x mr-10" />
+              </Button>
+              <Link to="/">
+                <h1 className="font-italic logo display-4 text-dark">Bcycom</h1>
+              </Link>
+            </div>
+          </div>
+          <div className="col-lg-12">
+            <CollapseHeader toggle={toggle} setToggle={setToggle} />
+          </div>
           <div className="col-lg-9">
-            <Link to="/">
-              <h1 className="font-italic logo display-4 text-dark">Bcycom</h1>
-            </Link>
+
             <div className="mt-4">
               <img src={image} alt="" className="w-100" />
             </div>
@@ -146,20 +168,29 @@ function MotorCycleDetails() {
                           </Button>
                         </div>
                       )
-                      : (
+                      : currentUser ? (
                         <Button variant="outline-primary" class="border rounded-pill" style={{ fontFamily: "'Rubik', sans-serif" }} onClick={() => showReservation(true)}>
                           <h4 className="fw-bolder fs-5 p-1">+ Reserve</h4>
 
                         </Button>
-                      ) : ''
+                      )
+                        : (
+                          <div className="d-flex align-items-center flex-column justify-content-center">
+                            <p>
+                              {' '}
+                              <b> Please login to reserve </b>
+                            </p>
+                          </div>
+                        )
+                    : ''
             }
               {
-              isCreator
+              isCreator && currentUser
                 ? (
                   <div className="d-flex align-items-center justify-content-around">
                     <Button
                       variant="outline-info"
-                      className=""
+                      className="mr-10"
                       onClick={() => navigate(`/addmotorcycle/${id}`)}
                     >
                       Edit
