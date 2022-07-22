@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Button, Collapse, Nav } from 'react-bootstrap';
+import { Collapse, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import SocialLinks from '../social-links';
 
-function CollapseHeader({ toggle, setToggle }) {
+function CollapseHeader({ toggle }) {
   return (
     <Collapse in={toggle}>
       <div className="col-lg-12">

@@ -23,7 +23,6 @@ import CollapseHeader from '../../Navigation/CollapseHeader';
 import AddReservation from '../../Reservation/AddReservation';
 import AllContainer from '../../Shared/AllContainer';
 import UserTemplate from '../../Shared/UserTemplate';
-import GoogleSignIn from '../../Signin';
 import '../styles/index.css';
 
 function MotorCycleDetails() {
