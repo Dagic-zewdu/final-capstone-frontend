@@ -1,0 +1,58 @@
+
+.overlay {
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: rgb(141, 203, 55);
+  overflow-y: hidden;
+  transition: 0.5s;
+  opacity: 0.9;
+}
+
+.overlay-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  display: flex;
+  justify-content: end;
+}
+
+.title {
+  font-family: 'Rubik', sans-serif;
+  font-size: 35px;
+  text-transform: uppercase;
+  color: #eee;
+}
+
+.desc {
+  font-family: 'Rubik', sans-serif;
+  font-size: 17px;
+  color: #eee;
+  text-align: center;
+}
+
+.btn-reserve {
+  font-family: 'Rubik', sans-serif;
+  font-size: 15px;
+  color: #eee;
+}
+
+.form-cont {
+  margin-top: 40px;
+}
+
+.table-cont {
+  font-family: 'Rubik', sans-serif;
+}

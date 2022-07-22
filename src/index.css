@@ -1,0 +1,56 @@
+@import url('https://fonts.cdnfonts.com/css/elronet-monospace');
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(255, 255, 255) !important;
+  font-family: 'ElroNet Monospace', sans-serif !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a {
+  text-decoration: none !important;
+  font-family: 'Passion One', cursive;
+}
+
+a.active {
+  color: #fff;
+  background-color: rgb(158, 206, 63);
+}
+
+small {
+  font-size: 10px !important;
+}
+
+.viral {
+  font-family: 'Virale', sans-serif !important;
+  font-style: italic !important;
+}
+
+.bolder {
+  font-weight: 300 !important;
+}
+
+.wrap {
+  white-space: pre-wrap !important;
+}
+
+@media only screen and (max-width: 768px) {
+  a {
+    text-decoration: none !important;
+    font-family: 'Passion One', cursive;
+    color: #000 !important;
+    padding: 10px;
+    letter-spacing: 1px;
+    font-size: 25px;
+  }
+
+  a.active {
+    background-color: yellowgreen;
+    margin: auto;
+  }
+}
