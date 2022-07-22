@@ -2,7 +2,8 @@
 /* eslint-disable react/prop-types */
 import { faMotorcycle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import AuthorizeUser from '../Auth';
 import Navigation from '../Navigation';
 import ErrorContainer from './ErrorContainer';
@@ -11,6 +12,11 @@ import LoadingContainer from './LoadingContainer';
 function AllContainer({
   navigation = true, auth = false, loading = false, error = false, children, loadingType, data = [],
 }) {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     navigation
       ? (
