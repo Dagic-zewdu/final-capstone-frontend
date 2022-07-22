@@ -55,7 +55,7 @@ The front end app will open automatically to the default browser
 
 ## Kanban board
 
-👉 [Kanban board link](https://github.com/orgs/UpliftLab/projects/3)
+👉 [Kanban board link](https://github.com/Dagic-zewdu/final-capstone-frontend/projects/1)
 
 | Initial State | Final State |
 | -------------- | -----------|
