@@ -1,0 +1,94 @@
+@import url('https://fonts.cdnfonts.com/css/virale');
+
+.sidebar {
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff !important;
+  border-right: 0.5px solid #dcd9d9;
+  overflow-x: hidden;
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 15px;
+}
+
+.bg-lighter {
+  background-color: #eee !important;
+}
+
+.sidebar a {
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+  transition: 0.3s;
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 16px;
+  margin-left: 300px;
+  background-color: #fffbfb !important;
+  min-height: 100vh;
+}
+
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  #main {
+    margin-left: 0;
+  }
+
+  .logo {
+    transform: rotate(-10deg) !important;
+    color: #000;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #header-nav {
+    display: none;
+  }
+}
+
+.logo {
+  font-family: 'Virale', sans-serif;
+  font-size: 52px !important;
+  font-weight: 200;
+  font-style: italic;
+  transform: rotate(-10deg);
+  text-decoration: underline;
+}
+
+.side-link a {
+  color: #000;
+  padding: 10px 20px;
+  font-size: 25px;
+  font-family: 'Passion One', cursive;
+  letter-spacing: 1px;
+}
+
+.side-link .active {
+  background-color: rgb(158, 206, 63);
+  color: #fff;
+}
+
+#collapse-Header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 100px;
+  flex-wrap: wrap;
+}
+
+.border-less.btn {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}

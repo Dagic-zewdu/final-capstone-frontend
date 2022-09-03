@@ -1,0 +1,19 @@
+.h-100 {
+  min-height: 100vh !important;
+}
+
+.home-show-image:hover {
+  width: 310px;
+  padding: 10px;
+}
+
+.space {
+  letter-spacing: 3px;
+  font-family: 'Passion One', cursive;
+  color: #d3d3d3;
+}
+
+.select-title {
+  color: #d3d3d3;
+  font-family: 'Rubik', sans-serif;
+}
